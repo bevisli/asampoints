@@ -1,0 +1,50 @@
+.newform{
+		padding:10px 20px;
+	}
+	.has-error {
+		border-color: #E26B6A;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+	}
+	.has-success {
+		border-color: #49AF4C;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
+	}
+	h4{
+		padding-left: 0px;
+		font-size: 14px;
+		color: #21AE21;
+		font-weight: bold;
+	}
+	h3{
+		margin-top: 10px;
+		font-size: 19px;
+		color: #009a61;
+		font-weight: bold;
+	}
+	label{
+		color:#7C7B7B;
+	}
+	.warning{
+		margin-top: 20px;
+	}
+	.course-type .panel-heading h3, .couse-list .panel-heading h3{
+		color: #009a61;
+	}
+	.course-type .panel-body {
+		padding: 0px 15px 10px 15px;
+	}
+	.tags_list {
+		line-height: 30px;
+	}
+	.tags_list span{
+		border: 1px solid #ddd;
+		padding: 5px 8px;
+		margin-right: 5px;
+	}
+	.tagClose{
+		font-size: 18px;
+		font-weight: bold;
+		margin-left: 5px;
+	}

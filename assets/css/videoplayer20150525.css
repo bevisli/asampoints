@@ -1,0 +1,146 @@
+	#bgbox{ display: none; position: absolute; top: 0%; left: 0%; width: 100%; height: 100%; background-color:#131313; z-index:-1;}
+	#palyer-box .player-nav {
+			width: 100%;
+			display: block;
+			float: left;
+			position: relative;
+			padding: 0;
+			position: absolute;
+			top: 0px;
+			bottom: 0px;
+		}
+	#palyer-box .player-nav ul{
+		padding: 0;
+	}.onestage{margin-bottom:50px}.lianbo,.player-nav .deng-icon,.player-nav ul li{height:60px;margin-top:15px;padding-top:3px;text-align:center;position:relative;font-size:12px;color:#fff;cursor:pointer}.player-nav ul li:nth-child(1){cursor:inherit!important}.player-nav .lianbo{margin-top:100px}.player-nav ul li i{width:18px;height:18px;display:block;margin:0 auto}.player-nav ul li.mulu>i{background:url(/assets/img/icon_7f8b929.png) -23px -155px no-repeat;cursor:pointer}.player-nav ul li.mulu>p{cursor:pointer}.player-nav ul li.mulu>a>i{background:url(/assets/img/icon_7f8b929.png) -23px -155px no-repeat;cursor:pointer}.player-nav ul li.mulu>a>p{cursor:pointer}.bc-gray{background:#343434}#shouqi{cursor:pointer}.player-nav ul li div.mulu-box{display:none;width:400px;height:540px;margin-top:0;position:absolute;background:#343434;background:rgba(52,52,52,.9);left:40px;top:-15px;z-index:100}.player-nav ul li.xiazai i{background:url(/assets/img/icon_7f8b929.png) -21px -172px no-repeat;margin-bottom:3px}.player-nav ul li.xiazai a{color:#fff}.player-nav ul li.xianlu i{background:url(/assets/img/icon_7f8b929.png) -58px -140px no-repeat;margin-bottom:2px}.player-nav ul li.ask i{background:url(/assets/img/ask-icon_1f35d61.png) 0 0 no-repeat;margin-bottom:2px;width:21px;height:16px}.player-nav ul li.shouchang i{background:url(/assets/img/icon_7f8b929.png) -57px -158px no-repeat;margin-bottom:2px}.player-nav ul li.shouchang i.ysc{background:url(/assets/img/icon_7f8b929.png) -120px -45px no-repeat;margin-bottom:2px}.player-nav ul li.fenxiang i{background:url(/assets/img/icon_7f8b929.png) -58px -178px no-repeat;margin-bottom:2px}.player-nav .deng-icon i{width:18px;height:18px;display:block;margin:0 auto;background:url(/assets/img/icon_7f8b929.png) -118px -24px no-repeat;margin-bottom:2px}.player-nav .deng-icon i.ysc{width:18px;height:18px;display:block;margin:0 auto;background:url(/assets/img/icon_7f8b929.png) -121px -110px no-repeat;margin-bottom:2px}.player-nav .lianbo i{width:18px;height:18px;display:block;margin:0 auto;background:url(/assets/img/icon_7f8b929.png) -121px -67px no-repeat;margin-bottom:2px}.player-nav .lianbo i.ysc{width:18px;height:18px;display:block;margin:0 auto;background:url(/assets/img/icon_7f8b929.png) -121px -88px no-repeat;margin-bottom:2px}.player-nav ul li div.xiazai-box{width:120px;height:40px;margin-top:0;position:absolute;background:rgba(52,52,52,.9);left:40px;top:0;text-align:center;font-size:12px;line-height:40px;display:none;z-index:101}.player-nav ul li div.xiazai-box>a{color:#fff}.player-nav ul li div.shouchang-box{width:120px;height:40px;margin-top:0;position:absolute;background:rgba(52,52,52,.9);left:40px;top:0;text-align:center;font-size:12px;line-height:40px;display:none;z-index:1000}.player-nav ul li div.fenxiang-box{z-index:1000;width:120px;height:40px;margin-top:0;position:absolute;background:rgba(52,52,52,.9);left:40px;top:0;text-align:center;font-size:12px;line-height:40px;display:none}.player-nav ul li div.xianlu-box{z-index:1000;width:290px;height:40px;margin-top:0;position:absolute;background:rgba(52,52,52,.9);left:40px;top:0;text-align:center;font-size:12px;line-height:40px;display:none}.player-nav ul li div.xianlu-box span{display:inline-block;width:60px;text-align:center;height:40px}.player-nav ul li div.xianlu-box span>a{color:#fff}.player-nav ul li div.xianlu-box em{padding-right:10px}.bc-blue{background:#35b558}.player-nav ul li div.fenxiang-box i{width:26px;height:26px;overflow:hidden;display:inline-block;margin:8px 5px;background:url(/assets/img/icon_7f8b929.png) -94px -121px no-repeat}.player-nav ul li div.fenxiang-box i.qq-icon{width:26px;height:26px;overflow:hidden;display:inline-block;background:url(/assets/img/icon_7f8b929.png) -94px -148px no-repeat}.player-nav ul li div.fenxiang-box i.tencen-icon{width:26px;height:26px;overflow:hidden;display:inline-block;background:url(/assets/img/icon_7f8b929.png) -94px -175px no-repeat}
+		.player-nav ul li a{color:#fff;}
+		.video-play{
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+		.video-play-header{
+			padding:0px;
+			background: url("/assets/img/bg_ceping.png") repeat;
+			width: 100%;
+			position: relative;
+		}
+		.video-play-header .stage{
+			float: left;
+			width: 95%;
+			margin-bottom: -4px;
+		}
+		.video-play-header #palyer-box{
+			float: left;
+			width: 5%;
+			top: 0px;
+			position: relative;
+			bottom: 0px;
+			right: 0px;
+			position: absolute;
+		}
+		.player-nav .deng-icon{
+			bottom: 0px;
+			left: 30%;
+			position: absolute;
+		}
+		.depict-video{
+			position: relative;
+		}
+		.depict-video .icon-player {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -45px 0 0 -45px;
+			width: 90px;
+			height: 90px;
+			background: url(/assets/img/icon-start.png) no-repeat 0 0;
+			cursor: pointer;
+		}
+		.depict-video .icon-player:hover {
+			background: url(/assets/img/icon-start-on.png) no-repeat 0 0;
+		}
+		.depict-video .icon-player-href {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -45px 0 0 -45px;
+			width: 90px;
+			height: 90px;
+			background: url(/assets/img/icon-start.png) no-repeat 0 0;
+			cursor: pointer;
+		}
+		.depict-video .icon-player-href:hover {
+			background: url(/assets/img/icon-start-on.png) no-repeat 0 0;
+		}
+		.player-index-img-show{
+			width:100%;height:480px;
+		}
+		.player-index-video-info{
+			color:#888;font-size:12px;line-height: 24px;
+		}
+		.mb20{
+			margin-bottom:20px;
+		}
+		#askbox{
+			position: absolute;
+			left:50%;
+			display:none;
+			top:80px;
+			width:560px;
+			margin-left: -280px;
+			background-color: #ffffff;
+			border: 1px solid #999999;
+			border: 1px solid rgba(0, 0, 0, 0.2);
+			background-clip: padding-box;
+			outline: 0;
+		}
+		.askbox-header {
+			padding: 15px;
+			border-bottom: 1px solid #e5e5e5;
+			min-height: 16.42857143px;
+		}
+		.askbox-body {
+			padding: 15px;
+		}
+		.player-center{
+			position: relative;
+		}
+		.player-center .cprev,.player-center .cnext{
+			position: absolute;
+			display:none;
+			top:42%;
+		}
+		.player-center .cprev img,.player-center .cnext img{
+			width:28px;
+		}
+		.player-center:hover .cprev,.player-center:hover .cnext{
+			display:block;
+		}
+		.player-center .cprev{
+			left:0;
+		}
+		.player-center .cnext{
+			right:-1px;
+		}
+		.tipsloadtop{
+			position: relative;
+		}
+		span.tipsload{
+			position: absolute;
+			top: -25px;
+			left: 10px;
+			color: #fff;
+			font-size: 12px;
+			display: block;
+			background: #F2A861;
+			padding: 4px 10px;
+		}
+		span.tipsloadgreen{
+			position: absolute;
+			top: -25px;
+			left: 10px;
+			color: #fff;
+			font-size: 12px;
+			display: block;
+			background: #448E50;
+			padding: 4px 10px;
+		}

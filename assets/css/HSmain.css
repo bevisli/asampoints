@@ -1,0 +1,195 @@
+
+.bm_hover_card{
+	position:absolute;
+	width:350px;
+	z-index:1000;
+	height:210px;
+	overflow:hidden;
+}
+.bm_hover_card .loading{
+	width:32px;
+	height:32px;
+}
+.bm_hover_card a{
+	text-decoration:none;
+}
+.bm_hover_card a:hover{
+	text-decoration:underline;
+}
+.bm_hover_card_arrow{
+	width:14px;
+	height:12px;
+	display:block;
+	position:relative;
+	top:6px;
+	left:90px;
+	z-index:998;
+}
+.bm_hover_card_border{
+	position:absolute;
+	display:block;
+	width:100%;
+	height:100%;
+	z-index:996;
+}
+.bm_hover_card_container{
+	position:absolute;
+	z-index:997;
+	margin:5px;
+	width:340px;
+	height:188px;
+}
+.bm_hover_card_before{
+	top:72px;
+	left:116px;
+	position:absolute;
+	font-size:12px;
+}
+.bm_hover_card_content{
+	height:150px;
+	padding:8px;
+}
+.bm_hover_card_avator{
+	width:52px;
+	height:52px;
+	float:left;
+}
+.bm_hover_card_avator img{
+	padding:1px;
+	border-radius: 50%;
+}
+.bm_hover_card_name{
+	float:left;
+	margin-left:12px;
+	width:228px;
+	font-size:14px;
+	line-height: 28px;
+	height: 28px;
+}
+.bm_hover_card_name img{
+	vertical-align:middle;
+	margin-left:5px;
+}
+.bm_hover_card_from{
+	margin-left:12px;
+	line-height:18px;
+	font-size:12px;
+	float:left;
+	height:18px;
+	width:188px;
+}
+.bm_hover_card_from span+span{
+	margin-left:8px;
+}
+.card_medals{
+	margin-top: 10px;
+}
+.card_medals img{
+	margin-right: 9px;
+	margin-left: 9px;
+}
+.bm_hover_card_signaure{
+	margin-left:12px;
+	line-height:18px;
+	font-size:12px;
+	float:left;
+	height:18px;
+	width:188px;
+	overflow:hidden;
+}
+.bm_hover_card_info{
+	margin-top:10px;
+}
+.bm_hover_card_info p{
+	margin: 0 0 5px;
+	overflow:hidden;
+	font-size:12px;
+	display: block;
+	width: 270px;
+	float: right;
+}
+.bm_hover_card_info p a,.bm_hover_card_info p span{
+	float:left;
+	width:50px;
+	text-align:center;
+	line-height:16px;
+	height:16px;
+}
+.bm_hover_card_bar{
+	height:36px;
+	line-height:36px;
+	margin:1px;
+}
+.bm_hover_card_bar a{
+	float:right;
+	margin-top:8px;
+	margin-right:20px;
+}
+/****按钮**/
+.add_followed,.had_followed,.btn_self,.btn_loading{
+	width:66px;
+	font-size:12px;
+	height:26px;
+	display:inline-block;
+	outline:none;
+}
+
+/***资料卡***/
+.bm_hover_card{
+}
+.bm_hover_card .loading{
+	background:url(../images/loading.gif) no-repeat;
+}
+.bm_hover_card a{
+	color:#0777CB
+}
+.bm_hover_card_border{
+	background-color:#DADADA;
+	filter:alpha(opacity=80);
+	-webkit-opacity:0.8;
+	opacity:0.8;
+	-moz-opacity:0.8;
+}
+.bm_hover_card_container{
+	background-color:#FFFFFF;
+	border:1px solid #CCCCCC;
+}
+.bm_hover_card_arrow{
+	background:url(../images/bm_hover_card_arrow.gif) no-repeat;
+}
+.bm_hover_card_avator img{
+	border:1px solid #CCCCCC;
+}
+.bm_hover_card_from{
+	color:#999;
+}
+.bm_hover_card_signaure{
+	color:#999;
+}
+.bm_hover_card_bar{
+	background-color:#EEE;
+}
+/****按钮***/
+.btn_add:active
+{
+    background-position:0 -31px;
+}
+.had_followed,.followed{
+	background:url(../images/af_btn.png) -424px -96px;
+}
+.had_followed:hover
+{
+    background:url(../images/af_btn.png) -423px -48px;
+}
+.add_followed{
+	background:url(../images/af_btn.png) 0px -48px;
+}
+.add_followed:hover{
+	background:url(../images/af_btn.png) -110px -48px;
+}
+.btn_self{
+	background:url(../images/af_btn.png) -321px 0px;
+}
+.btn_loading{
+	background:url(../images/af_btn.png) -320px -50px;
+}

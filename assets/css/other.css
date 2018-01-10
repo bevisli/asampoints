@@ -1,0 +1,323 @@
+/*
+ * 其他样式
+ */
+a{color:#777;}
+#elevator_item {
+	width: 40px;
+	height: 108px;
+	position: fixed;
+	right: 5px;
+	top: 45%;
+	-webkit-transition: opacity .4s ease-in-out;
+	-moz-transition: opacity .4s ease-in-out;
+	-o-transition: opacity .4s ease-in-out;
+	opacity: 1;
+	z-index: 100020;
+}
+#elevator_item.off {
+	opacity: 0;
+	visibility: hidden
+}
+#elevator {
+	display: none;
+	width: 40px;
+	height: 50px;
+	background: url(/layout/images/icon_top.png) center center no-repeat;
+	background-color: #444;
+	background-color: rgba(0,0,0,.6);
+	border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0,0,0,.2);
+	cursor: pointer;
+	margin-top: 10px
+}
+#elevator:hover {
+	background-color: rgba(0,0,0,.7)
+}
+#elevator:active {
+	background-color: rgba(0,0,0,.75)
+}
+#elevator_item #qqin {
+	padding:5px 0px;
+	display: block;
+	width: 40px;
+	height: 108px;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0,0,0,.2);
+	cursor: pointer;
+	background-color: #444;
+	background-color: rgba(0,0,0,.6)
+}
+#elevator_item #qqin .icon-share {
+	background: url(../images/layout-share.png) no-repeat;
+	display: block;
+	height: 20px;
+	margin: 0 auto 5px;
+	width: 20px;
+	background-position: 0 -113px;
+}
+
+#elevator_item #qqin span{
+	color:#ffffff;
+	display: block;
+	margin: 0 auto;
+	width: 15px;line-height: 18px;
+}
+#elevator_item #qqin:hover {
+	background-color: rgba(0,0,0,.7)
+}
+#elevator_item #qqin:active {
+	background-color: rgba(0,0,0,.75)
+}
+#elevator_item .qr {
+	margin-top:10px;
+	display: block;
+	width: 40px;
+	height: 40px;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0,0,0,.2);
+	cursor: pointer;
+	background: url(/layout//images/icon_code.png) center center no-repeat;
+	background-color: #444;
+	background-color: rgba(0,0,0,.6)
+}
+#elevator_item .qr:hover {
+	background-color: rgba(0,0,0,.7)
+}
+#elevator_item .qr:active {
+	background-color: rgba(0,0,0,.75)
+}
+#elevator_item .qr-popup {
+	width: 170px;
+	height: 200px;
+	background: #fff;
+	box-shadow: 0 1px 8px rgba(0,0,0,.1);
+	position: absolute;
+	left: -172px;
+	bottom: -110px;
+	border-radius: 2px;
+	display: none;
+	text-align: center
+}
+#elevator_item .qr-popup .code-link {
+	display: block;
+	margin: 10px;
+	color: #777
+}
+#elevator_item .qr-popup .code {
+	width:150px;
+	display: block;
+	margin-bottom: 10px
+}
+#elevator_item .qr-popup .arr {
+	width: 6px;
+	height: 11px;
+	background: url(/layout/images/code_arrow.png) 0 0 no-repeat;
+	position: absolute;
+	right: -6px;
+	bottom: 74px;
+}
+
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td.lineheight30{line-height:16px;}
+.boxhidden{display:none;}
+.navbar-inverse-inset{
+	background: rgba(0, 0, 0, 0.9);
+	background: black \9;
+	filter: alpha(opacity=10);	
+}
+.navbar-inverse .navbar-text{
+	line-height: 1.42857143;
+}
+.navbar-inverse .navbar-text-login{
+	margin: 0 0 10px;
+}
+/*顶部*/
+.carousel-inner {
+max-height:480px;
+}
+/*
+ * 客服QQ
+ */
+.kefu{
+	z-index:99999;
+	display:none;
+	width: 33%;
+}
+.kefu .panel-default{
+	border-radius: 6px;
+	border: 8px solid #CCC;
+}
+.kefu .panel-heading{
+	background-color: #fff;
+	margin: 0 10px;
+	padding: 6px 0;
+	border-radius: 0px;
+	border-bottom-color: #c9394a;
+}
+.kefu .panel-heading h4{
+	font-size:14px;
+	margin: 0;
+	color: #c9394a;
+	font-weight: bold;
+}
+.kefu .panel-footer{
+	padding: 2px 0;
+	background-color: #ddd;
+	border-top: 1px solid #c9394a;
+}
+.kefu .panel-footer ul {
+	margin-bottom: 0px;
+	color: #777;
+	font-size: 12px;
+}
+.qqbox1{
+	padding: 0px 20px;
+}
+.qqbox2{
+	background-color: #ddd;
+	padding: 5px 6px;
+	border: 1px solid #cccccc
+	border-radius: 4px;
+	margin-bottom: 5px;
+}
+.qqbox2 img{
+	width: 100%;
+	height: auto;
+	border-radius: 4px;
+	
+}
+.qqbox2 h4{
+	font-size:14px;
+	padding: 5px;
+	margin: 0;
+	color:#333 ;
+	
+}
+.kefu .panel-body{
+	padding: 10px;
+}
+
+/*一键登录*/
+.thumbnail{
+	position: relative;
+}
+.thumbnail .play-ico{
+	display: none;
+	position: absolute;
+}
+.thumbnail:hover .play-ico{
+	display: block;
+	position: absolute;
+	left: 34%;
+	top: 15%
+	height: 100px;
+	width: 100px;
+	background: url(../images/play.png) no-repeat;
+}
+
+/*一键登录*/
+.btn-sina, .btn-qq , .btn-renren {
+  margin-right: 10px;
+  display: inline-block;
+  height: 24px;
+  width: 100px;
+  background: url(/layout/images/oauth.png) no-repeat;
+  vertical-align: middle; 
+}
+.btn-qq {
+  background-position: 0 -24px; }
+.btn-renren {
+  background-position: 0 -48px; }
+
+/*浮动与提示*/
+.alert-info a{font-size: 15px;}
+
+#AllObjMsg{
+font-family: sans-serif;
+display:none;
+border-radius: 6px;
+padding:15px 20px 15px 20px;
+min-width:80px;
+text-align: center;
+font-size: 12px;
+z-index:99999;
+left:50%;
+top: 45%;
+margin-left:-70px!important;
+margin-top:-30px!important;
+margin-top:-30px;
+margin-left:-70px;
+position:fixed!important;/*FF IE7*/
+position:absolute;/*IE6*/
+border:8px #A3A3A3 solid;
+line-height: 30px;
+background:#FFFFFF;
+_top:       expression(eval(document.compatMode &&
+            document.compatMode=='CSS1Compat') ?
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);
+}
+#AllObjMsg a{
+display:inline-block;
+padding:3px 8px;
+border: 1px solid #666;
+border-top-color: #e7e7e7;
+border-left-color: #e7e7e7;
+background-color: #f0f0f0;
+color:#111111;
+line-height: 16px;
+vertical-align: middle;
+margin-left: 5px;
+cursor: pointer;
+font-size:12px;
+}
+blockquote {
+    background-color: #f5f2f0;
+    border-color: #e0dfcc;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 10px;
+    color: red;
+    font-family: 'Microsoft Yahei',Consolas,Monaco,'Andale Mono',monospace;
+    line-height: 30px;
+    margin: 0;
+    padding: 1em;
+}
+
+#eggbox{
+display:none;
+border-radius: 6px;
+padding:15px 20px 15px 20px;
+min-width:80px;
+text-align: center;
+font-size: 12px;
+z-index:99999;
+left:50%;
+top: 45%;
+margin-left:-70px!important;
+margin-top:-30px!important;
+margin-top:-30px;
+margin-left:-70px;
+position:fixed!important;/*FF IE7*/
+position:absolute;/*IE6*/
+line-height: 30px;
+_top:       expression(eval(document.compatMode &&
+            document.compatMode=='CSS1Compat') ?
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);
+}
+
+#eggbox a{
+display:inline-block;
+padding:3px 8px;
+border: 1px solid #666;
+border-top-color: #e7e7e7;
+border-left-color: #e7e7e7;
+background-color: #f0f0f0;
+color:#111111;
+line-height: 16px;
+vertical-align: middle;
+margin-left: 5px;
+cursor: pointer;
+font-size:12px;
+}

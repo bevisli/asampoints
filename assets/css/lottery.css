@@ -1,0 +1,342 @@
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	width:100%;
+	background-image: url("../img/lottery/bodyback-back.jpg");
+	background-repeat: repeat-x;
+	height:3362px;
+}
+
+li {
+	list-style:none;
+}
+.bonusbody{
+	position: relative;
+	width: 1142px;
+	height: 3362px;
+	margin: 0px auto;
+}
+.bonusheader{
+	background: url("../img/lottery/bonusheader.png") no-repeat;
+	height: 615px;
+}
+.bonushongbao {
+	background: url("../img/lottery/bonushongbao.png") no-repeat ;
+	height: 378px;
+}
+.bonushongbao .surplus {
+	background: url("../img/lottery/surplus.png") no-repeat 150px 50px;
+	height: 378px;
+	width:561px;
+	float: left;
+}
+
+.bonushongbao .surplus .bonusnum {
+	height: 70px;
+	width:300px;
+	font-size: 33px;
+	margin-left: 190px;
+	margin-top: 157px;
+	letter-spacing: 3px;
+}
+.bonushongbao .surplus .bonusnum span {
+	width: 80px;
+	font-size: 44px;
+	color: red;
+	display: inline-block;
+	text-align: center;
+}
+.bonushongbao .surplus .usebutton {
+	height: 71px;
+	width:271px;
+	margin-left: 200px;
+	background: url("../img/lottery/usesmall.png") no-repeat;
+	border: 0;
+}
+.bonushongbao .tobig {
+	height: 378px;
+	width:561px;
+	float: left;
+	background: url("../img/lottery/smalltobig.png") no-repeat left 25px;
+}
+.bonushongbao .tobig .tobigbutton {
+	width:404px;
+	height: 91px;
+	background: url("../img/lottery/exchangetobig.png") no-repeat;
+	margin-top: 100px;
+	border: 0;
+}
+.bonushongbao .tobig .tobigbuttongrey {
+	width:404px;
+	height: 91px;
+	background: url("../img/lottery/exchangetobiggrey.png") no-repeat;
+	margin-top: 100px;
+	border: 0;
+}
+.bonuslottery {
+	background: url("../img/lottery/bonuslottery.png") no-repeat;
+	height: 463px;
+}
+.bonuslottery .dial {
+	width:571px;
+	height: 463px;
+	background: url("../img/lottery/lottery-back.png") no-repeat 171px 41px;
+	float: left;
+	position: absolute;
+}
+.bonuslottery .dial div.issure {
+	width: 385px;
+	height: 385px;
+	margin-left:340px; 
+	position:relative;
+	bottom: -41px;
+	right: 170px;
+
+}
+.bonuslottery .dial div.issure1 {
+	background: url("../img/lottery/1.png") no-repeat;
+}
+.bonuslottery .dial div.issure2 {
+	background: url("../img/lottery/2.png") no-repeat;
+}
+.bonuslottery .dial div.issure3 {
+	background: url("../img/lottery/3.png") no-repeat;
+}
+.bonuslottery .dial div.issure4 {
+	background: url("../img/lottery/4.png") no-repeat;
+}
+.bonuslottery .dial div.issure5 {
+	background: url("../img/lottery/5.png") no-repeat;
+}
+.bonuslottery .dial div.issure6 {
+	background: url("../img/lottery/6.png") no-repeat;
+}
+.bonuslottery .dial div.issure7 {
+	background: url("../img/lottery/7.png") no-repeat;
+}
+.bonuslottery .dial div.issure8 {
+	background: url("../img/lottery/8.png") no-repeat;
+}
+.bonuslottery .dial div.isbtn {
+	
+	position:relative;
+	top: -384px;
+	
+
+}
+.bonuslottery .dial div a{
+	width: 90px;
+	height: 78px;
+	background: url("../img/lottery/lotterybutton-back.png") no-repeat;
+	padding:0;
+	position: relative;
+	left: 324px;
+	top: 19.5px;
+	z-index: 3;
+}
+.bonuslottery .dial  img {
+	width: 386px;
+	height: 386px;
+	margin-top: 40px;
+	position: relative;
+	left: 77.5px;
+	z-index: 2;
+}
+.bonuslottery .show {
+	width:571px;
+	height: 463px;
+	float: right;
+	position: absolute;
+	top: 960px;
+	margin-left: 570px;
+}
+.bonuslottery .show .myscore{
+	height: 30px;
+	position: relative;
+	top: 60px;
+	left: 20px;
+	color: pink;
+	font-size: 20px;
+
+}
+.bonuslottery .show .showlottery {
+	background: url("../img/lottery/showlottery.png") no-repeat left 30px;
+	width: 353px;
+	height: 366px;
+	margin-top: 50px;
+	margin-left: 20px;
+	padding-top: 20px;
+	padding-left: 10px;
+	position: relative;
+}
+.bonuslottery .show .showlottery .showday {
+	width: 166px;
+	height: 51px;
+	margin-top: -10px;
+	margin-left: -13px;
+}
+.bonuslottery .show .showlottery .daylucky {
+	background: url("../img/lottery/daylucky.png") no-repeat;
+}
+.bonuslottery .show .showlottery .dayluckyactive {
+	background: url("../img/lottery/dayluckyactive.png") no-repeat 2px top;
+}
+.bonuslottery .show .showlottery .showmy {
+	width: 166px;
+	height: 51px;
+	margin-top: -10px;
+}
+.bonuslottery .show .showlottery .mylucky {
+	background: url("../img/lottery/mylucky.png") no-repeat;
+	
+}
+.bonuslottery .show .showlottery .myluckyactive {
+	background: url("../img/lottery/myluckyactive.png") no-repeat 1px;
+}
+
+
+
+.bonusrole {
+	background: url("../img/lottery/bonusrole.png") no-repeat;
+	height: 1000px;
+}
+.bonusrole .content {
+	font-size: 18px;
+	padding-top: 135px;
+	padding-left: 225px;
+}
+.bonusrole .content ul {
+	font-size: 20px;
+	width:660px;
+}
+.bonusrole ul li {
+	padding-top:15px;
+	color: #fff;
+	list-style: none;
+}
+.bonushb {
+	background: url("../img/lottery/bonushb.png") no-repeat;
+	height: 910px;
+}
+.hide {
+	display: none;
+}
+	
+.cs_scroll {
+	float: left;
+	margin-bottom: 10px;
+	overflow: hidden;
+	width: 350px;
+	height: 300px; 
+	font-size: 12px; 
+}
+.cs_scroll ul , .bonuslottery .show .showlottery .mylucky-list ul {
+	float: left;
+	padding: 0px;
+	width: 100%;
+	height:350px;
+}
+.cs_scroll ul li , .bonuslottery .show .showlottery .mylucky-list ul li {
+	float: left;
+	width: 350px;
+	height: auto;
+	font-size:12px;
+	line-height: 27px;
+	padding-bottom: 1px;
+}
+
+.cs_scroll ul li span , .bonuslottery .show .showlottery .mylucky-list li span{
+	color:#e8e30c;
+}
+.modelupload_layer {
+	position: fixed;
+	top: 280px;
+	z-index: 20;
+	right: 0px; 
+}
+.modelupload_icon {
+	overflow: hidden;
+}
+.modelupload_icon a {
+	display: block;
+	width: 154px;
+	height: 95px;
+	background: url(../img/lottery/modelupload.png) no-repeat;
+}
+
+.showdialogheader {
+	width: 328px;
+	height: 112px;
+}
+
+.showdialogheader .isalert {
+	width: 326px;
+	min-height: 66px;
+	line-height: 30px;
+	text-align: center;
+	color: #787575;
+	font-weight: bold;
+	letter-spacing: 2px;
+	background-color: #fff;
+	float: left;
+	padding-top: 15px;
+}
+.showdialogheader .sure {
+	width: 163px;
+	height:46px;
+	line-height: 35px;
+	text-align: center;
+	border-radius: 0px;
+	background-color:  #fe716a;
+	color: #fff;
+	float: left;
+}
+.showdialogheader .cancel {
+	width: 163px;
+	height:46px;
+	line-height: 35px;
+	text-align: center;
+	border-radius: 0px;
+	background-color:  #b5bccc;
+	color: #fff;
+	float: left;
+}
+ .abutton {
+	width: 326px;
+	height:66px;
+	padding:15px;
+	border-bottom:1px solid #e2dede;
+	text-align: center;
+}
+.diva {
+	margin-top: 5px;
+	margin-left: 15px;
+	margin-bottom: 5px;
+	float: left;
+}
+
+.tiptools{
+	position: absolute;
+	top: 5px;
+	left: 10%;
+	color: #AF8D8D;
+}
+
+.tiptools .overdays{
+	color: #DE3D3D;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+.tiptools .toolslogin{
+	margin-left: 10px;
+}
+
+.tiptools .toolslogin a{
+	margin-left:5px;
+	color: #D08383;
+}
+
