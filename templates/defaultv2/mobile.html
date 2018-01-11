@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile Demos</title>
+	<base href="{echo:$baseUrl;/}" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet"  href="/assets/jqmobile/jquery.mobile-1.4.2.min.css">
+	<link rel="stylesheet" href="/assets/jqmobile/jqm-demos.css">
+	<script src="/assets/jqmobile/jquery.js"></script>
+	<script src="/assets/jqmobile/index.js"></script>
+	<script src="/assets/jqmobile/jquery.mobile-1.4.2.min.js"></script>
+</head>
+<body>
+<div data-role="page" id="pageone" class="jqm-demos">
+  <div data-role="header" class="jqm-content">
+    <h2>优惠卡二维码领取</h2>
+  </div>
+
+  <div data-role="content">
+	{if($show==1)[exc]}
+     <p><b>{echo:$context;/}</b></p>
+	 {if($context=='领取成功！')[exc]}
+	 <a class="ui-btn ui-shadow ui-corner-all" href="javascript:;" onclick="window.close()">关闭页面</a>
+	 {else}
+	 <a class="ui-btn ui-shadow" href="{echo:URL_NAV('mobile_'.$code);/}">返回</a>
+	 {/if}
+	{else}
+	<form role="form" id="contact_form" name="contact_form" method="post" action="{echo:URL_NAV('mobile');/}" enctype="multipart/form-data"/>
+    <p><b class="ui-link">优惠信息：</b>{echo:$sale_info[subject];/}</p>
+    <p><b class="ui-link">优惠抵消：</b>{echo:$sale_info[price];/}元</p>
+    <p><label for="username">绑定账号：</label><input type="text" name="username" id="username">    </p>
+	<input type="hidden" name="code" value="{echo:$r[2];/}">
+	<input type="hidden" name="act" value="add">
+	<button href="javascript:;" onclick="contact_form.submit()" type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-active">领取优惠</button>
+	</form>
+	{/if}
+  </div>
+
+  <div data-role="footer">
+    <h1>汇识学院 &copy 2014</h1>
+  </div>
+</div> 
+
+<div data-role="page" id="pagetwo">
+  <div data-role="header">
+    <h1>二维码领取优惠卡</h1>
+  </div>
+
+  <div data-role="content">
+  </div>
+
+  <div data-role="footer" class="footer">
+    <h1>汇识学院 &copy 2014</h1>
+  </div>
+</div> 
+<style>
+* {  
+	-webkit-touch-callout: none; 
+	-webkit-user-select: none; 
+}  
+input {   
+	-webkit-user-select: auto; 
+}
+.jqm-demos .jqm-content {
+padding-top: 0.2em;
+float: normal;
+}
+.jqm-demos .jqm-content > h2 {
+margin: 0;
+}
+.ui-link{
+color: #38c;
+}
+ </style>
+</body>
+</html>

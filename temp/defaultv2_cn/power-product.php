@@ -1,0 +1,274 @@
+<?php if(!defined('HUISHI_SOFT_IN')) exit('Access Denied'); ?><style>
+/*********************
+  TopMenu, Top-Panel
+*********************/
+#top-lists{height:45px;border:0px;background-color:#FFFFFF;margin:0px;padding:0px;}
+#panel {width:50%;float:left;margin:0px;padding:0px;}
+#top-list-add {width:50%;float:right;border:0px;}
+#top-list-add ul{margin:0px;padding:0px;border:0px;}
+#top-list-add ul li{float:right;margin:2px 4px;text-decoration:none;list-style-type:none;}
+#top-list-add ul li.enter{padding:0px;}
+#top-list-add ul li.enternone{padding:3px;}
+#top-list-add ul li a{display:block;padding:4px 8px;}
+#top-list-add ul form{margin:0px;padding:0px;}
+#top-list-add ul .enterinput input{cursor:pointer;border:1px solid #d6d6d6;border-radius:4px;margin:0px;padding:1px 5px;background:#FFFFFF;height:24px;line-height:24px;font-size:12px;color:rgb(55, 91, 145);}
+.current{
+	font-weight:bold;
+}
+#top-panel{
+	border:1px solid #eee;
+	background:#FFF;
+	margin-bottom:10px;
+	height:32px;
+	line-height:32px;
+	float:left;
+	width:100%;
+}
+#showmanage{display:none;border:1px solid #eeeeee;background-color:#F3F3FB;width:620px;height:60px;font-size:12px;}
+#showmanage a{margin:1px 1px;text-decoration:none;display:inline-block;height:14px;line-height:14px;}
+#panel ul{
+	list-style:none;
+}
+#panel ul li{
+	height:28px;
+	line-height:28px;
+	padding:10px;
+	display:inline;
+}
+#panel ul li a{
+	height:28px;
+	line-height:28px;
+	padding-left:19px;
+	text-decoration:none;
+	margin:0 3px;
+	font-size:14px;
+	display:inline-block;
+}
+#panel a:hover{
+	text-decoration:underline;
+}
+.pagenew {
+background: transparent url(../images/icons/fastforward.gif) no-repeat left;
+}
+#total_tiao {
+color: #F24024;
+}
+.fontorange{
+color: #F24024;
+}
+.fontorange a{
+color: #F24024;
+}
+span.order_id,span.order_cp,span.order_info,span.order_paytype,span.order_name,span.order_city,span.order_address,span.order_time{
+	display:block;
+	font-size:12px;
+}
+</style>
+        <div class="container-fluid">
+        	<div class="inner">
+            	<div class="general_content">
+                	<div class="main_content">
+						<div class="alert alert-info">
+							<a href="<?php echo URL_NAV(CUTURL('power_product'));?>">寄件列表</a><span>—</span><span style="font-size:15px;">总计：<?php echo $result['countnum'];?>个包裹</span>
+							<span style="float:right;">
+								<input type="text" id="sid" class="searchtime" name="stime" placeholder="起始编号" value="<?php echo $KEYS[ssid];?>" style="width: 100px;">
+								<span>-</span>
+								<input type="text" id="eid" class="searchtime" name="stime" placeholder="终止编号" value="<?php echo $KEYS[eid];?>" style="width: 100px;">
+								<input type="text" id="stime" class="searchtime" name="stime" placeholder="订单开始时间" value="<?php if($KEYS[stime]){?><?php echo date('Y-m-d',strtotime($KEYS[stime]));?><?php } ?>" style="width: 100px;">
+								<span>-</span>
+								<input type="text" id="etime" class="searchtime" name="etime" placeholder="订单结束时间" value="<?php if($KEYS[etime]){?><?php echo date('Y-m-d',strtotime($KEYS[etime]));?><?php } ?>" style="width: 100px;">
+								<a href="javascript:;" onclick="searchparts();" class="btn btn-success btn-flat success new-product">搜 索</a>
+								<a href="javascript:;" onclick="outputparts();" class="btn btn-success btn-flat success new-product">导出Excel</a>
+							</span>
+						</div>
+										   
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>快递类型</th>
+					<th>速运通编号</th>
+					<th>绑定快递公司</th>
+					<th>绑定快递编号</th>
+					<th>寄件人信息</th>
+					<th>收件人信息</th>
+					<th>添加时间</th>
+					<th>状态</th>
+					<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+						
+				<?php if($result[result]){?>
+					<?php foreach($result[result] as $v){?>	
+						<tr id="lists_<?php echo $v[pro_id];?>">
+							<td><?php if($showuserinfo[$v[pro_foruid]][user_mobile_code]=='86'&&$v[pro_usermobilecode]!='86'){?>出口<?php }else{ ?>进口<?php } ?><br ><?php echo $showuserinfo[$v[pro_foruid]][user_mobile_code];?>-><?php echo $v[pro_usermobilecode];?></td>
+							<td><?php echo $v[pro_newid];?></td>
+							<td><?php echo $v[pro_expressname];?></td>
+							<td><?php echo $v[pro_expressid];?></td>
+							<td><?php echo $showuserinfo[$v[pro_foruid]][user_name];?></td>
+							<td>
+											<span class="order_paytype"><b>收件人信息</b></span>
+											<span class="order_name"><b>姓名:</b><?php echo $v[pro_username];?> <b>电话:</b><?php echo $v[pro_usermobilecode];?> <?php echo $v[pro_usermobile];?></span>
+											<span class="order_name"><b>备用手机号:</b><?php echo $v[pro_usersentgetmobile1];?> </span>
+											<span class="order_city"><b>物品信息:</b> <b>物品</b>[<?php echo $v[pro_usersentbrand];?>] <b>数量</b>[<?php echo $v[pro_usersentnum];?>] <b>重量</b>[<?php echo $v[pro_usersentweight];?>]</span>
+											<span class="order_address"><b>收件地址:</b><?php echo $v[pro_useraddress];?></span>
+											<span class="order_time"><b>身份证:</b><a href="<?php echo $v[pro_usercard];?>" target="_blank"><img src="<?php echo $v[pro_usercard];?>" style="height:30px;"></span>
+							</td>
+							<td><?php echo date('Y年m月d日',strtotime($v[add_time]));?></td>
+							<td>
+										<?php if($v[status]=='1'){?>
+											<span class="label label-info">已发货</span>
+										<? }else if($v[status]=='2'){?>
+											<span class="label label-success">已完成</span>
+										<? }else if($v[status]=='3'){?>
+											<span class="label label-danger">已取消</span>
+										<?php }else{ ?>
+											<span class="label label-default">确认中</span>
+										<?php } ?>
+										<?php if($v[pro_expressname]=='AAE全球'){?><span style="display:block;margin-top:5px;"/><?php echo $v[pro_expressname];?>:<a href="javascript:showexp('AAE','<?php echo $v[pro_expressid];?>');">查物流</a></span><?php } ?>
+										<?php if($v[pro_expressname]=='东方速递'){?><span style="display:block;margin-top:5px;"/><?php echo $v[pro_expressname];?>:<a href="javascript:showexp('DF','<?php echo $v[pro_expressid];?>');">查物流</a></span><?php } ?>
+										<?php if($v[pro_expressname]=='嘉吉快递'){?><span style="display:block;margin-top:5px;"/><?php echo $v[pro_expressname];?>:<a href="javascript:showexp('JJ','<?php echo $v[pro_expressid];?>');">查物流</a></span><?php } ?>
+							</td>
+							<td align="center">
+									<select name="updatestaus" class="updatestaus" dataid="<?php echo $v[pro_id];?>">
+									<option value=''>请操作</option>
+									<?php if(1>$v[status]){?>
+									<option value='1'>已发货</option>
+									<?php } ?>
+									<?php if($v[status]=='1'){?>
+									<option value='2'>已完成</option>
+									<?php } ?>
+									<?php if($v[status]!='2'){?>
+									<option value='3'>已取消</option>
+									<?php } ?>
+									</select>
+							</td>
+						</tr>
+					<?php } ?>
+				<?php }else{ ?>
+					<tr>
+						<td colspan="9" class="center">内容为空!</td>
+					</tr>
+				<?php } ?>
+				</tbody>
+				</table>
+
+
+						<div class="clear"></div>
+						
+						<div class="wp-pagenavi clearfix">
+							<div class="pagination pagination-left" style="text-align:center;">
+								<?php  require("module/page.php");?>
+							</div>
+						</div><!--/ .wp-pagenavi-->
+
+						<div class="clear"></div>
+
+                    </div>
+                    
+                	<div class="clearboth"></div>
+                </div>
+            </div>
+        </div>
+		
+		<link href="assets/bootstrap-dialog/css/bootstrap-dialog.min.css" rel="stylesheet"type="text/css" />
+		<script src="assets/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+		<script language="JavaScript" type="text/javascript" src="/layout/js/DatePicker/WdatePicker.js"></script>
+		<script language="javascript" type="text/javascript"> 
+			$(document).ready(function(){ 
+				$('.updatestaus').change(function(){ 
+					var thisbakt='';
+					var dataid=$(this).attr('dataid');
+					var thisval=$(this).children('option:selected').val();
+					var thistxt=$(this).children('option:selected').text();
+					if(thisval>0){
+						if(thisval==1){
+						thisbakt='<span style="width:240px;text-align:left;display:block;"><br >物流公司：<select class="form-control" name="expname" id="expname"><option value="">--请选择--</option><option value="AAE全球">AAE全球</option><option value="东方速递">东方速递</option><option value="嘉吉快递">嘉吉快递</option></select><br />物流单号：<input type="text" class="form-control" name="expid" id="expid" value=""></span>';
+						}
+						BootstrapDialog.show({
+							title: '状态更改提醒',
+							message: '<center>确定将此订单状态改为 '+thistxt+' ? '+thisbakt+'<hr><div class="bootstrap-dialog-footer-buttons"><button class="btn btn-success" onclick="sureudso('+dataid+','+thisval+');">确定</button> <button class="btn btn-default" onclick="$(\'.modal-backdrop\').remove();$(\'.bootstrap-dialog\').remove();location.reload();" data-dismiss="modal">取消</button></div></center>'
+						});
+					}
+				});
+			});
+			function showexp(tval,tid){
+				$.get("/ajax/?act=getexpress&tval="+tval+"&tid="+tid, function(data){
+					BootstrapDialog.show({
+						title: '物流信息',
+						message: '<div>'+data+'<hr><div class="bootstrap-dialog-footer-buttons"><button class="btn btn-default" data-dismiss="modal">确定</button></div></div>'
+					});
+				});
+			}
+			function sureudso(id,vid){
+				if(vid==1){
+					$.post("/ajax/",
+					  {
+						act:'sureudso',
+						sid:id,
+						vid:vid,
+						expname:$('#expname').val(),
+						expid:$('#expid').val()
+					  },
+					  function(data,status){
+							if(data=='1'){
+								location.reload();
+							}else{
+								BootstrapDialog.show({
+									title: '状态更改提醒',
+									message: '<center>'+data+'<hr><div class="bootstrap-dialog-footer-buttons"><button class="btn btn-default" data-dismiss="modal">确定</button></div></center>'
+								});
+							}
+					  });
+				}else{
+
+					$.post("/ajax/",
+					  {
+						act:'sureudso',
+						sid:id,
+						vid:vid
+					  },
+					  function(data,status){
+							if(data=='1'){
+								location.reload();
+							}else{
+								BootstrapDialog.show({
+									title: '状态更改提醒',
+									message: '<center>'+data+'<hr><div class="bootstrap-dialog-footer-buttons"><button class="btn btn-default" onclick="$(\'.modal-backdrop\').remove();$(\'.bootstrap-dialog\').remove();" data-dismiss="modal">确定</button></div></center>'
+								});
+							}
+					  });
+				}
+
+			}
+			
+		
+		function searchparts(){
+			var sid=$('#sid').val().replace("-","|").replace("-","|");
+			var eid=$('#eid').val().replace("-","|").replace("-","|");
+			var stime=$('#stime').val().replace("-","|").replace("-","|");
+			var etime=$('#etime').val().replace("-","|").replace("-","|");
+            //window.location.href="?r=index_category-search_code-"+$('#code').val()+"~finish-"+$('#finish').val()+"~status-"+$('#status').val()+"~search-"+search+'~stime-'+$('#stime').val().replace('-','|').replace('-','|')+'~etime-'+$('#etime').val().replace('-','|').replace('-','|')+'~changshang-'+$('#changshang').val().replace('-','|').replace('-','|');
+			 window.location.href="<?php echo URL_NAV(CUTURL('power_product'));?>"+"~ssid-"+sid+"~eid-"+eid+'~stime-'+stime+'~etime-'+etime+'/';
+        }
+		function outputparts(id){
+			var sid=$('#sid').val().replace("-","|").replace("-","|");
+			var eid=$('#eid').val().replace("-","|").replace("-","|");
+			var stime=$('#stime').val().replace("-","|").replace("-","|");
+			var etime=$('#etime').val().replace("-","|").replace("-","|");
+			BootstrapDialog.show({
+				title: '系统提示',
+				message: '<center>是否批量导出筛选后的清单？<hr><div class="bootstrap-dialog-footer-buttons"><a class="btn btn-success" href="power/product/ssid-'+sid+'~eid-'+eid+'~stime-'+stime+'~etime-'+etime+'~excel-1/" target="_blank">确定</a> <button class="btn btn-default" data-dismiss="modal">取消</button>'
+			});
+        }
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#stime").click(function(){
+					WdatePicker({minDate:'',doubleCalendar:false,dateFmt:'yyyy-MM-dd'});
+				});
+				$("#etime").click(function(){
+					WdatePicker({minDate:'',doubleCalendar:false,dateFmt:'yyyy-MM-dd'});
+				});
+			});
+		</script>

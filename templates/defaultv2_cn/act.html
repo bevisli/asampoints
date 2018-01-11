@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	
+	<title>{echo:$SYSTEM_TITLE;/}</title>
+	
+	<meta name="keyword" content="{echo:$SYSTEM_KEYWORD;/}" />
+	<meta name="description" content="{echo:$SYSTEM_DESCRIPTION;/}" />
+	<link rel="shortcut" href="images/favicon.ico" />
+	<base href="{echo: $baseUrl;/}" /> 
+	
+	<!-- 1140px Grid styles for IE -->
+	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+	<![endif]-->
+
+	<link rel="stylesheet" href="css/1140.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/style.css" media="screen" />
+	
+	<!-- HTML5 Shiv + detect touch events -->
+	<script type="text/javascript" src="js/modernizr.custom.js"></script>
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<!--[if lt IE 9]><script src="js/selectivizr-and-extra-selectors.min.js"></script>
+	<![endif]-->
+	<script src="js/respond.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.cycle.all.min.js"></script>
+	<script src="js/fancybox/jquery.fancybox.pack.js"></script>
+	<script src="js/custom.js"></script>
+</head>
+<body class="h-style-1 text-1">
+
+<div class="wrap">
+	<!-- 顶部 html 块 -->
+	{inc: include("header.php");/}
+
+
+	<!-- - - - - - - - - - 
+
+	<!-- - - - - - - - - - - - - - Main - - - - - - - - - - - - - - - - -->		
+		
+	<section class="main sbl clearfix">		
+		
+		<div class="row">
+
+		
+	{sta: if($IS_Act!=1)[exc]}		
+			<!-- - - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->	
+
+			<section id="content" class="ninecoll">
+
+				<div><a href="{echo:$one_asd_63['asd_link'];/}" title="{echo:$one_asd_63['asd_name'];/}"><img src="{echo:$one_asd_63['asd_content'];/}" width="100%" style="margin-bottom:2px;"></a></div>
+				
+			
+				<table class="custom-table">
+					
+					<thead>
+						<tr>
+							<th>主题</th>
+							<th>地点</th>
+							<th>日期</th>
+							<th>时间</th>
+							<th>报名</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+				{sta: if($result['result']) {
+				foreach($result['result'] as $v) [loop]}	
+						<tr>
+							<td><a href="{echo:URL_ACT('act',$v[cat_id],$v[act_id]);/}" title="{echo:$v[title];/}">{echo:$v[title];/}</a></td>
+							<td>{echo:$v[where];/}</td>
+							<td>{echo: date('Y年m月d日',$v[act_stime]);/}</td>
+							<td>{echo: date('H:i',$v[act_stime]);/} - {echo: date('H:i',$v[act_etime]);/}</td>
+							<td>
+							{sta: if($v[act_etime]>time())[exc]}		
+							<a href="{echo:URL_APPLY('apply',$v[act_id]);/}" class="button_mini orange bcolor">我要报名</a>
+							{sta:  } else [exc]}
+							<a href="#" class="button_mini dark bcolor">已结束</a>
+							{end:if/}
+							</td>
+						</tr>
+				{sta:  }} else {
+				echo "  <tr>
+							<td colspan=5>暂无内容</td>
+						</tr>
+				";
+				if/}
+					</tbody>
+					
+				</table><!--/ .custom-table-->
+
+				
+				<div class="border-divider"></div>
+				
+
+			</section><!--/ #content-->
+
+			<!-- - - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - - -->	
+	{sta:  } else [exc]}
+
+
+			
+			<!-- - - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->	
+
+			<section id="content" class="ninecoll">
+				
+				<h3 class="section-title section-title-center">{echo:$Act_Info[title];/}</h3>
+				<div class="section-tag-right">
+						<span class="category"><b>主题:</b>
+							<a href="{echo:URL_ACT('act',$Act_Info[cat_id]);/}">{echo: $show_cat_list[$Act_Info[cat_id]][cat_name];/}</a>
+						</span>						
+						<span class="tags"><b>浏览:</b>
+							<a href="#">{echo: $Act_Info[click];/}</a>次
+						</span>						
+						<span class="comments"><b>添加时间:</b>
+							<a href="#">{echo: $Act_Info[add_time];/}</a>
+						</span>						
+				</div>
+					
+				<div class="box-toggle">
+
+					<span class="trigger active"> 活动信息 </span>
+
+					<div class="toggle-container toggle-container-show">
+						<p>
+							<span><b>主题:　</b>{echo:$Act_Info[title];/}</span>
+						</p>
+						<p>
+							<span><b>地点:　</b>{echo:$Act_Info[where];/}</span>
+						</p>
+						<p>
+							<span><b>日期:　</b>{echo: date('Y年m月d日',$Act_Info[act_stime]);/}</span>
+						</p>
+						<p>
+							<span><b>时间:　</b>{echo: date('H:i',$Act_Info[act_stime]);/} - {echo: date('H:i',$Act_Info[act_etime]);/}</span>
+						</p>
+					</div><!--/ .toggle-container--> 
+
+				</div><!--/ .box-toggle-->
+	
+				<div class="box-toggle">
+
+					<span class="trigger active"> 活动介绍 </span>
+
+					<div class="toggle-container toggle-container-show">
+						<p>
+							{echo:$Act_Info[content];/}
+						</p>
+					</div><!--/ .toggle-container--> 
+
+				</div><!--/ .box-toggle-->
+				<div class="clear"></div>
+				{sta: if($Act_Info[act_etime]>time())[exc]}		
+				<a href="{echo:URL_APPLY('apply',$Act_Info[act_id]);/}" class="button orange large bcolor" style="margin:15px 0px;">我要报名</a>
+				{sta:  } else [exc]}
+				<a href="#" class="button dark large bcolor" style="margin:15px 0px;">已结束</a>
+				{end:if/}
+			</section><!--/ #content-->
+
+			<!-- - - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - - -->	
+
+
+
+	{end:if/}
+
+			<!-- - - - - - - - - - - - - - - Sidebar - - - - - - - - - - - - - - - - -->	
+
+			<div class="threecoll">
+			
+				<h5>主题分类</h5>
+					
+					<ul class="list type-1">
+						{sta: foreach($show_cat_list as $k=>$v)[loop]}
+						<li {sta:if($r[2]==$v['cat_id'])[exc]}class="current"{end:if/}><a href="{echo:URL_ACT('act',$v[cat_id]);/}">{echo:$v[cat_name];/}</a></li>
+						{end:foreach/}
+						
+					</ul><!--/ .list-->
+					
+
+					
+			</div><!--/ #sidebar-->
+
+			<!-- - - - - - - - - - - - - end Sidebar - - - - - - - - - - - - - - - - -->
+			
+			
+		</div><!--/ .row-->
+
+	</section><!--/ .main -->
+
+	<!-- - - - - - - - - - - - - end Main - - - - - - - - - - - - - - - - -->			
+		
+	
+
+
+
+
+
+<!-- ==========================================以下是脚注================================================= -->
+	{inc: require("footer.php");/}
+</body>
+</html>

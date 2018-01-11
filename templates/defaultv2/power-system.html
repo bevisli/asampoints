@@ -1,0 +1,257 @@
+<link rel="stylesheet" href="servtools/kindeditor-4.1.9/themes/default/default.css" />
+<link rel="stylesheet" href="servtools/kindeditor-4.1.9/plugins/code/prettify.css" />
+<script charset="utf-8" src="servtools/kindeditor-4.1.9/kindeditor.js"></script>
+<script charset="utf-8" src="servtools/kindeditor-4.1.9/lang/zh_CN.js"></script>
+<script charset="utf-8" src="servtools/kindeditor-4.1.9/plugins/code/prettify.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : 'servtools/kindeditor-4.1.9/plugins/code/prettify.css',
+			uploadJson : 'servtools/kindeditor-4.1.9/php/upload_json.php',
+			fileManagerJson : 'servtools/kindeditor-4.1.9/php/file_manager_json.php',
+			allowFlashUpload : false,
+			allowMediaUpload : false,
+			allowFileManager : false,
+			afterCreate : function() {
+				var self = this;
+				K.ctrl(document, 13, function() {
+					self.sync();
+					K('form[name=example]')[0].submit();
+				});
+				K.ctrl(self.edit.doc, 13, function() {
+					self.sync();
+					K('form[name=example]')[0].submit();
+				});
+			}
+		});
+
+		
+		var editor1 = K.create('textarea[name="summary"]', {
+			cssPath : 'servtools/kindeditor-4.1.9/plugins/code/prettify.css',
+			uploadJson : 'servtools/kindeditor-4.1.9/php/upload_json.php',
+			fileManagerJson : 'servtools/kindeditor-4.1.9/php/file_manager_json.php',
+			allowFlashUpload : false,
+			allowMediaUpload : false,
+			allowFileManager : false,
+			afterCreate : function() {
+				var self = this;
+				K.ctrl(document, 13, function() {
+					self.sync();
+					K('form[name=example]')[0].submit();
+				});
+				K.ctrl(self.edit.doc, 13, function() {
+					self.sync();
+					K('form[name=example]')[0].submit();
+				});
+			}
+		});
+		prettyPrint();
+	});
+</script>
+       <div class="container-fluid">
+        	<div class="inner">
+            	<div class="general_content">
+                	<div class="main_content">
+										  
+					<script language="JavaScript" type="text/javascript" src="/layout/js/DatePicker/WdatePicker.js"></script>
+					<script language="JavaScript" src="../servtools/ajax_client/ajax.js"></script>
+					<script>
+						$(document).ready(function(){
+						$("#stime").click(function(){
+						WdatePicker({minDate:'',doubleCalendar:false,dateFmt:'yyyy-MM-dd H:m'});
+						});
+						$("#etime").click(function(){
+						WdatePicker({minDate:'',doubleCalendar:false,dateFmt:'yyyy-MM-dd H:m'});
+						});
+						});
+					</script>
+					<style>
+					td span {color:red;}
+					</style>
+						<div class="alert alert-info">
+							<a href="{echo:URL_NAV(CUTURL('power_'.$r[2]));/}">系统设置</a>
+						</div>
+						
+<script type='text/javascript'>
+
+function GET_TOP_URL(){
+	var location_site="http://"+location.host+location.pathname+location.search;
+	var no_file_url=location_site.replace(/.[^\/]*$/g,"/");
+	var no_dir_url=no_file_url.replace(/\/sysadmin\//,"/");
+	return no_dir_url;
+}
+
+function show_domain(){
+	var domain_url=GET_TOP_URL();
+	document.getElementById('domain_url').innerHTML=domain_url;
+	var costom_url=document.getElementById("web_site_domain").value;
+	if(costom_url!=domain_url){
+		document.getElementById("web_site_domain").style.color='red';
+		document.getElementById('domain_url').style.color='red';
+	}
+
+}
+
+function check_domain(){
+	var domain_url=GET_TOP_URL();
+	var costom_url=document.getElementById("web_site_domain").value;
+	if(domain_url!=costom_url){
+		show_domain();
+		return confirm('');
+	}
+}
+
+function set_domain(){
+	var domain_url=GET_TOP_URL();
+	document.getElementById("web_site_domain").value=domain_url;
+	document.getElementById("web_site_domain").style.color='';
+	document.getElementById('domain_url').style.color='';
+}
+function goto_smtptest() {
+	var smtp_test = document.getElementById('sys_smtptest').value;
+	var user_email_reg = /^[0-9a-zA-Z_\-\.]+@[0-9a-zA-Z_\-]+(\.[0-9a-zA-Z_\-]+)*$/;
+	if(!user_email_reg.test(smtp_test)){
+		ShowMessageBox('i_mail_format1;?>')
+        //alert('i_mail_format1;?>');
+        document.getElementById('sys_smtptest').focus();
+        return false;
+    }
+	location.href = "m.php?app=sys_ckmail&smtp_test="+smtp_test;
+}
+
+
+</script>
+		<form action="{echo:URL_NAV('power_'.$r[2]);/}" method="post" onsubmit="return check_domain()" enctype="multipart/form-data" target="i_frame">
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="col-lg-6">
+					<input type="hidden" name="act" value="edit">
+						<form class="form-horizontal" role="form">
+							<fieldset>
+							  <div class="form-group">
+								<label class="control-label" for="focusedInput">网站名称</label>
+								<div class="controls">
+								  <input class="form-control focused" name="sysinfo[sys_name]" value="<?php echo $SYSINFO['sys_name']; ?>" type="text">
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label" for="focusedInput">中文名称</label>
+								<div class="controls">
+								  <input class="form-control focused" name="sysinfo[sys_name_cn]" value="<?php echo $SYSINFO['sys_name_cn']; ?>" type="text">
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">网站LOGO</label>
+								<div class="controls">
+								{sta:if($SYSINFO['sys_logo'])[exc]}
+								<img src="<?php echo $SYSINFO['sys_logo']; ?>"> <br />
+								{end:if/}
+								  <input type="file" name="logo_images[]" style="width:215px;" /> <code>建议尺寸：宽270x高90</code>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">网站标题</label>
+								<div class="controls">
+								  <input class="form-control" style="width:515px;" type="text" name="sysinfo[sys_title]" value="<?php echo $SYSINFO['sys_title']; ?>" >
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">网站关键字</label>
+								<div class="controls">
+								  <input class="form-control" type="text" name="sysinfo[sys_keywords]" value="<?php echo $SYSINFO['sys_keywords']; ?>" style="width:650px;">
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">网站简介</label>
+								<div class="controls">
+								 <textarea name="sysinfo[sys_description]" class="form-control" id="textarea2" style="width:350px;"><?php echo $SYSINFO['sys_description']; ?></textarea>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">公司名称</label>
+								<div class="controls">
+								  <input class="form-control" name="sysinfo[sys_company]" value="<?php echo $SYSINFO['sys_company']; ?>" type="text" >
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">系统默认语言</label>
+								<div class="controls">
+								  <input class="form-control" name="sysinfo[lp]" value="<?php echo $SYSINFO['lp']; ?>" type="text" >
+								</div> (请填写 en 英文或者 cn 中文)
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">系统版权</label>
+								<div class="controls">
+								  <input class="form-control" name="sysinfo[sys_copyright]" value="<?php echo $SYSINFO['sys_copyright']; ?>" type="text" >
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">禁止注册的账户和昵称（用|号分割）</label>
+								<div class="controls">
+								  <textarea class="form-control" name="sysinfo[sys_nokeyword]" style="width:650px;height:120px;"><?php echo $SYSINFO['sys_nokeyword']; ?></textarea>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">网站备案</label>
+								<div class="controls">
+								  <input class="form-control" name="sysinfo[sys_icp]" value="<?php echo $SYSINFO['sys_icp']; ?>" type="text" >
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">统计代码</label>
+								<div class="controls">
+								 <textarea name="sysinfo[sys_countjs]" class="form-control"><?php echo $SYSINFO['sys_countjs']; ?></textarea>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">注册条款</label>
+								<div class="controls">
+								 <textarea name="sysinfo[sys_registerinfo]" class="form-control" ><?php echo $SYSINFO['sys_registerinfo']; ?></textarea>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">站点开关</label>
+								<div class="controls">
+								  <select name='sysinfo[offline]' class="form-control"><option value='true' <?php if ($SYSINFO['offline']=='true') echo 'selected';?>>开启</option><option value='false' <?php if ($SYSINFO['offline']=='false') echo 'selected';?>>关闭</option></select>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">是否开启伪静态</label>
+								<div class="controls">
+								  <select name='sysinfo[url_r]' class="form-control"><option value='true' <?php if ($SYSINFO['url_r']=='true') echo 'selected';?>>开启</option><option value='false' <?php if ($SYSINFO['url_r']=='false') echo 'selected';?>>关闭</option></select>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">网站目录URL</label>
+								<div class="controls">
+								  <input class="form-control" name="sysinfo[web]" value="<?php echo $SYSINFO['web']; ?>" type="text" > <code>推荐：<span id="domain_url" ></span></code>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="control-label">数据前缀</label>
+								<div class="controls">
+								  <input class="form-control" type="text" name="sysinfo[session]" value="<?php echo $SYSINFO['session']; ?>" style="width:100px;">
+								</div>
+							  </div>
+							  <div class="form-actions">
+								<button type="submit" class="btn btn-primary">保存设置</button>
+							  </div>
+							</fieldset>
+						  </form>
+					
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+		</form>
+			<IFrame id="i_frame" name="i_frame" width="0px" height="0px" style="display:none"></IFrame>
+					
+<script>
+show_domain();
+</script>
+                    
+                	<div class="clearboth"></div>
+					</div>
+                </div>
+            </div>
+        </div>

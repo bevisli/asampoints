@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{echo:$SYSINFO['sys_name_cn'];/}-{echo:$SYSTEM_TITLE;/}</title>
+<meta name="description" content="{echo:$SYSINFO['sys_name'];/}-{echo:$SYSTEM_TITLE;/}">
+<base href="{echo:$baseUrl;/}" />
+<!-- core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/prettyPhoto[].css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
+<link href="css/owl.carousel.css" rel="stylesheet">
+<link href="css/owl.theme.css" rel="stylesheet">
+<link href='css/opensans.css' rel='stylesheet' type='text/css'>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="homepage">
+	{inc: include tpl_engine($SYSINFO['templates_name'],"header.html",1);/}
+
+<div id="inner-page">
+    <div class="top-center">
+      <h2>我们的产品</h2>
+      <p class="lead">卓越的经营态度，诚信经营，提供更广泛的建筑材料，高质量的石材产品，完美的服务品质…</p>
+    </div>
+      <div class="container">
+    <!--/#portfolio-filter-->
+    <div class="col-xs-12 col-sm-3 col-md-3">
+		<h3 class="p1">产品分类</h3>
+		<ul class="list-1">
+			<li{if($r[2]=='')[exc]} class="active"{/if}><a class="{if($r[2]=='')[exc]}active{/if}" href="{echo:URL_NAV('pro');/}">所有分类</a></li>
+			{foreach($show_top[0] as $k=>$v)[exc]}
+				<li{if($r[2]==$v['cat_id'])[exc]} class="active"{/if}><a class="" href="{echo:URL_NAV('pro_'.$v['cat_id']);/}">{if($show_top[$v['cat_id']])[exc]}{if($r[2]==$v['cat_id'])[exc]}<i class="fa fa-minus"></i> {else}<i class="fa fa-plus"></i> {/if}{/if}{echo:$v['cat_name_cn'];/}</a></li>
+				{if($show_top[$r[2]]&&($r[2]==$v['cat_id']))[exc]}
+				{foreach($show_top[$r[2]] as $k=>$v)[exc]}
+					<li class="lower{if($r[3]==$v['cat_id'])[exc]} active2{/if}"> &nbsp;&nbsp;<i class="fa fa-caret-right"></i> <a class="" href="{echo:URL_NAV('pro_'.$v['parent_id'].'_'.$v['cat_id']);/}">{echo:$v['cat_name_cn'];/}</a></li>
+				{/foreach}
+				{/if}
+			{/foreach}
+		</ul>
+    </div>
+    
+    <div class="col-xs-12 col-sm-9 col-md-9">
+		<div class="row">
+		  <div class="portfolio-items">
+			{if($result[result])[exc]}
+		  {foreach($result[result] as $k=>$v)[exc]}
+			<div class="portfolio-item apps col-xs-12 col-sm-4 col-md-4">
+			  <div class="recent-work-wrap max-min-height"> <img class="img-responsive pro-img-bg" src="{echo:$v[thumb];/}" alt="{echo:$v[title_cn];/}"><p class="pro-title">{echo:$v[title_cn];/}</p>
+				<div class="overlay">
+				  <div class="recent-work-inner">
+					<h3>
+				    <a class="preview" href="{echo:$v[thumb];/}" rel="prettyPhoto[]" title="{echo:$v[title_cn];/}">
+					<p><i class="fa fa-search"></i> 查看</p>
+					<p>{echo:$v[title_cn];/}</p>
+					</a>
+					</h3>
+					<p>{echo:$v[content_cn];/}</p>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  {/foreach}
+		  {else}
+		  <center>暂无数据</center>
+		  {/if}
+		  </div>
+		</div>
+	</div>
+		<div class="clear"></div>
+		<div class="wp-pagenavi clearfix">
+				<center>
+				<div class="pagenav clearfix">
+					{inc: require("module/page.php");/}
+				</div>
+				</center>
+		</div>
+  </div>
+</div>
+<!--/#portfolio-item-->
+	{inc: include tpl_engine($SYSINFO['templates_name'],"footer.html",1);/}
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?php if(!defined('HUISHI_SOFT_IN')) exit('Access Denied'); ?><!--Header-part-->
+<div id="header">
+  <h1><a href="">速运通</a></h1>
+</div>
+<!--close-Header-part--> 
+
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+	<ul class="nav">
+		<li class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text"><?php echo $POWER[power_name];?></span><b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="<?php echo URL_NAV('power_system');?>"><i class="icon icon-cog"></i>系统设置</a></li>
+			</ul>
+		</li>
+		<li class=""><a title="" href="<?php echo URL_NAV('power_out');?>"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+	</ul>
+</div>
+<!--close-top-Header-menu-->

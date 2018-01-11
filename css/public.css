@@ -1,0 +1,724 @@
+@charset "UTF-8";
+/* alice.base 样式模块 */
+/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
+html {
+  color: #000;
+  background: #fff;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  margin: 0;
+  padding: 0;
+}
+
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* HTML5 媒体文件跟 img 保持一致 */
+audio, canvas, video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+body, button, input, select, textarea {
+  font: 12px/1.5 "Microsoft YaHei",SimSun,Arial;
+}
+
+input, select, textarea {
+  font-size: 100%;
+}
+
+/* 去掉各Table  cell 的边距并让其边重合 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* IE bug fixed: th 不继承 text-align*/
+th {
+  text-align: inherit;
+}
+
+/* 去除默认边框 */
+fieldset, img {
+  border: 0;
+}
+
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe {
+  display: block;
+}
+
+/* 去掉 firefox 下此元素的边框 */
+abbr, acronym {
+  border: 0;
+  font-variant: normal;
+}
+
+/* 一致的 del 样式 */
+del {
+  text-decoration: line-through;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* 去掉列表前的标识, li 会继承 */
+ol, ul {
+  list-style: none;
+}
+
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption, th {
+  text-align: left;
+}
+
+/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: 500;
+}
+
+q:before, q:after {
+  content: '';
+}
+
+/* 统一上标和下标 */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* 正常链接 未访问
+a:link {
+    color: #08c;
+} */
+/* 鼠标悬停 */
+a:hover {
+  text-decoration: underline;
+}
+
+/* 默认不显示下划线，保持页面简洁 */
+ins, a {
+  text-decoration: none;
+}
+
+/* 代码字体 */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+/* 清理浮动 */
+.clear:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.clear {
+  zoom: 1;
+  /* for IE6 IE7 */
+}
+
+/* 单行文字溢出时出现省略号，需设定宽度 */
+.textoverflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 人民币符号 */
+.rmb {
+  font-family: arial;
+  font-style: normal;
+  padding-right: 4px;
+}
+
+body {
+  font-family: "microsoft yahei";
+  background-color: #F6F6F6;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.pull-left {
+  float: left;
+  display: inline;
+}
+
+.pull-right {
+  float: right;
+  display: inline;
+}
+
+.full {
+  width: 100%;
+}
+
+.headerFull {
+  background-color: #2C2E30;
+  height: 79px;
+  /* border-bottom: 1px solid #fff; */
+}
+
+.logo {
+  padding-top: 10px;
+  margin-right: 25px;
+}
+
+.navList li {
+  float: left;
+  font-size: 14px;
+}
+.navList a {
+  float: left;
+  padding: 0 18px;
+  color: #fff;
+  line-height: 79px;
+  text-decoration: none;
+}
+.navList a:hover {
+  background-color: #434446;
+  text-decoration: none;
+}
+
+.navBtn {
+  float: left;
+  display: none;
+}
+
+.navBtn a {
+  display: block;
+  float: left;
+  background: url(../images/navBtn.jpg) 0 0 no-repeat;
+  width: 52px;
+  height: 79px;
+  padding: 0;
+  margin: 0;
+  text-indent: -9999px;
+}
+
+.loginTel {
+  color: #fff;
+}
+.loginTel .tel {
+  line-height: 79px;
+  display: inline-block;
+  font-size: 22px;
+}
+.loginTel .loginBtn {
+  width: 76px;
+  height: 30px;
+  border: 2px solid #C93C4C;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  line-height: 30px;
+  color: #C93C4C;
+  font-size: 14px;
+  margin-top: 25px;
+  margin-right: 17px;
+}
+.loginTel .loginBtn:hover {
+  background-color: #C93C4C;
+  color: #fff;
+  text-decoration: none;
+}
+.loginTel .loginBtn:focus {
+  outline: none;
+}
+
+.popOpen {
+  overflow-y: hidden;
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  overflow: hidden;
+  outline: 0;
+  background-color: #000;
+  _position: absolute;
+  width: 100%;
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+  display: none;
+}
+
+.loginReg {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: 100%;
+  height: auto;
+  z-index: 1060;
+}
+
+.login {
+  width: 670px;
+  position: relative;
+  background-color: #EDF0F2;
+  margin: 0 auto;
+}
+
+.reg {
+  background-color: #EDF0F2;
+  width: 400px;
+  display: none;
+  position: relative;
+  margin: 0 auto;
+}
+
+.lTitle {
+  height: 60px;
+  background-color: #D90000;
+  font-size: 18px;
+  color: #fff;
+  padding: 0 30px;
+  line-height: 60px;
+}
+.lTitle span {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.loginBox, .regBox {
+  padding: 40px 0;
+  padding-left: 40px;
+}
+.loginBox li, .regBox li {
+  /* margin-bottom: 30px; */
+  clear: both;
+  display: block;
+}
+.loginBox li input, .regBox li input {
+  vertical-align: middle;
+}
+.loginBox li p, .regBox li p {
+  height: 30px;
+  line-height: 25px;
+}
+.loginBox li p.error, .regBox li p.error {
+  color: #D90000;
+}
+.loginBox .text, .regBox .text {
+  border: 1px solid #D0D6D9;
+  background-color: #fff;
+  height: 20px;
+  width: 315px;
+  padding: 9px 0;
+  display: block;
+}
+.loginBox .text label, .regBox .text label {
+  line-height: 20px;
+  float: left;
+  width: 18px;
+  height: 20px;
+  text-indent: -9999px;
+  background: url(../images/rl-sprite.png) 0 0 no-repeat;
+  line-height: 0;
+  font-size: 0;
+  padding: 0 10px;
+  border-right: 1px solid #EDF0F2;
+}
+.loginBox .text .email, .regBox .text .email {
+  background-position: -81px -686px;
+}
+.loginBox .text .password, .regBox .text .password {
+  background-position: -80px -782px;
+}
+.loginBox .text .username, .regBox .text .username {
+  background-position: -80px -735px;
+}
+.loginBox .text .yzm, .regBox .text .yzm {
+  width: 130px;
+}
+.loginBox .text input, .regBox .text input {
+  border: 0;
+  background: none;
+  line-height: 16px;
+  padding: 2px 0;
+  outline: none;
+  padding-left: 8px;
+  width: 265px;
+}
+.loginBox .yzmWrap, .regBox .yzmWrap {
+  clear: both;
+  margin-bottom: 15px;
+}
+.loginBox .yzmWrap .text, .regBox .yzmWrap .text {
+  width: 136px;
+  float: left;
+}
+.loginBox .yzmWrap img, .regBox .yzmWrap img {
+  margin: 0 10px;
+  float: left;
+}
+.loginBox .yzmWrap a.gh, .regBox .yzmWrap a.gh {
+  float: left;
+  color: #39B94E;
+  text-decoration: none;
+}
+.loginBox .yzmWrap p, .regBox .yzmWrap p {
+  clear: both;
+  height: 30px;
+}
+.loginBox .opts, .regBox .opts {
+  _line-height: 28px;
+  padding-top: 10px;
+}
+.loginBox .opts input, .regBox .opts input {
+  margin-right: 2px;
+  float: left;
+  margin-top: 2px;
+  _float: none;
+  _margin-top: 0;
+}
+.loginBox .opts .forgetBtn, .regBox .opts .forgetBtn {
+  color: #555;
+}
+.loginBox .btn, .regBox .btn {
+  margin-bottom: 0;
+}
+.loginBox .gc, .loginBox .bc, .loginBox .gyc, .regBox .gc, .regBox .bc, .regBox .gyc {
+  float: left;
+  width: 146px;
+  margin-right: 20px;
+  line-height: 40px;
+  height: 40px;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+}
+.loginBox .bc, .regBox .bc {
+  background-color: #58B9E6;
+}
+.loginBox .bc:hover, .regBox .bc:hover {
+  background-color: #2ea7e0;
+}
+.loginBox .gc, .regBox .gc {
+  margin-right: 0;
+  background-color: #3CB950;
+}
+.loginBox .gc:hover, .regBox .gc:hover {
+  background-color: #33a646;
+}
+.loginBox .gyc, .regBox .gyc {
+  background-color: #D0D6D9;
+  color: #7E878C;
+}
+.loginBox .gyc:hover, .regBox .gyc:hover {
+  background-color: #bbc0c3;
+}
+
+.forget .gc {
+  width: 315px;
+}
+
+.lqq, .lwb {
+  background-color: #65AEDE;
+  color: #fff;
+  line-height: 40px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 10px;
+  padding-left: 60px;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
+}
+.lqq:hover, .lwb:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.lqq i, .lwb i {
+  background: url(../images/rl-sprite.png) 0 -888px no-repeat;
+  vertical-align: middle;
+  width: 22px;
+  height: 16px;
+  position: absolute;
+  top: 14px;
+  left: 30px;
+}
+
+.lqq:hover {
+  background-color: #5b9cc7;
+}
+
+.lwb {
+  background-color: #EB5F64;
+}
+.lwb:hover {
+  background-color: #d3555a;
+}
+.lwb i {
+  background-position: 0 -862px;
+}
+
+.loginleft {
+  padding-right: 33px;
+  border-right: 1px solid #D0D6D9;
+  width: 318px;
+  display: block;
+}
+
+.loginquicky {
+  padding: 30px 0 30px 40px;
+  width: 200px;
+  text-align: center;
+  display: block;
+}
+.loginquicky a {
+  display: block;
+  height: 40px;
+  width: 140px;
+}
+
+.server {
+  position: fixed;
+  right: 0;
+  top: 20%;
+  _position: absolute;
+}
+.server .serBtn {
+  float: left;
+  margin-right: -1px;
+  width: 37px;
+  height: 127px;
+  background: url(../images/ser.png) no-repeat;
+  font-size: 16px;
+  text-align: center;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.server .serWrap {
+  width: 0;
+  overflow: hidden;
+}
+.server .serContent {
+  float: left;
+  width: 143px;
+  border: 1px solid #E4E4E4;
+  border-top: 0;
+  background-color: #fff;
+}
+.server .serContent .serTitle {
+  border: 1px solid #E4E4E4;
+  border-width: 1px 0;
+  text-align: center;
+}
+.server .serContent .serTitle h3 {
+  margin: 1px;
+  background-color: #F4F4F4;
+  line-height: 38px;
+  font-size: 16px;
+}
+.server .serContent p {
+  text-align: center;
+  margin-top: 5px;
+  line-height: 25px;
+}
+.server .serContent li {
+  margin: 7px 0;
+  line-height: 23px;
+  color: #2699FF;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.server .serContent img {
+  vertical-align: middle;
+}
+.server .serContent p.serTel {
+  color: #0190FF;
+  font-size: 14px;
+  line-height: 48px;
+  margin: 0;
+  font-weight: bold;
+  background: url(../images/ser.png) 0 -128px no-repeat;
+  padding-left: 10px;
+}
+
+.returnTop {
+  display: none;
+  position: fixed;
+  left: 50%;
+  margin-left: 610px;
+  bottom: 10%;
+  _position: absolute;
+  _margin-left: 0;
+  _left: 90%;
+}
+.returnTop .wx {
+  position: relative;
+  margin-bottom: 10px;
+}
+.returnTop .wx p a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-indent: -9999px;
+  background: url(../images/rt.png) 0 0 no-repeat;
+}
+.returnTop .wx p a:hover, .returnTop .wx p a.on {
+  background-position: 0 -50px;
+}
+.returnTop .wx .wxCont {
+  display: none;
+  position: absolute;
+  border: 1px solid #D8D8D8;
+  width: 160px;
+  right: 58px;
+  bottom: -10px;
+  background-color: #fff;
+  text-align: center;
+  height: 188px;
+}
+.returnTop .wx .wxCont img {
+  width: 150px;
+  margin-top: 5px;
+}
+.returnTop .wx .wxCont i {
+  position: absolute;
+  right: -6px;
+  top: 150px;
+  background: url(../images/wxi.png) 0 0 no-repeat;
+  width: 7px;
+  height: 12px;
+}
+.returnTop .rt a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-indent: -9999px;
+  background: url(../images/rt.png) -50px 0 no-repeat;
+}
+.returnTop .rt a:hover {
+  background-position: -50px -50px;
+}
+
+.footer {
+  background-color: #2C2E30;
+  padding-top: 30px;
+  color: #8E999D;
+}
+.footer a {
+  color: #8E999D;
+}
+
+.fcont {
+  border-bottom: 1px solid #515254;
+  padding-bottom: 20px;
+}
+.fcont li {
+  float: left;
+  border-right: 1px solid #515254;
+  height: 120px;
+}
+.fcont .contact {
+  border-right: 0;
+}
+
+.flogo {
+  width: 394px;
+  padding-left: 12px;
+}
+.flogo p {
+  line-height: 22px;
+}
+
+.fnav {
+  padding: 0 114px;
+  width: 160px;
+  padding-top: 8px;
+  height: 112px;
+  overflow: hidden;
+}
+.fnav a {
+  margin: 5px 10px;
+  text-align: center;
+  padding: 2px 0;
+  display: inline-block;
+}
+
+.contact {
+  width: 400px;
+  padding-top: 15px;
+  height: 105px;
+  text-align: center;
+}
+.contact a {
+  display: inline-block;
+  text-indent: -9999px;
+  margin: 0 6px;
+  width: 32px;
+  height: 32px;
+  margin-top: 15px;
+  opacity: 0.5;
+  filter: aplha(opacity=50);
+}
+.contact a:hover {
+  opacity: 1;
+  filter: aplha(opacity=100);
+}
+
+#qzone {
+  background: url(../images/contact.png) 0 0 no-repeat;
+}
+
+#sinaweibo {
+  background: url(../images/contact.png) -48px 0 no-repeat;
+}
+
+#qqweibo {
+  background: url(../images/contact.png) -96px 0 no-repeat;
+}
+
+.link {
+  line-height: 30px;
+  padding: 15px 0 50px 0;
+}
+.link li {
+  float: left;
+  width: 120px;
+  display: inline;
+}

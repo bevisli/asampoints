@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<base href="{echo:$baseUrl;/}" />
+		<title>{echo:$SYSTEM_TITLE;/}</title>
+		<meta name="keywords" content="{echo:$SYSTEM_KEYWORD;/}">
+		<meta name="description" content="{echo:$SYSTEM_DESCRIPTION;/}">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<link href="{echo:$NowDomainUrl;/}assets/css/bootstrap.css" rel="stylesheet" media="screen">
+		<link href="{echo:$NowDomainUrl;/}assets/css/atc.css" rel="stylesheet" media="screen">
+		<link href="{echo:$NowDomainUrl;/}assets/css/other.css" rel="stylesheet" media="screen">
+
+		<!--[if lt IE 9]>
+		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		<link rel="stylesheet" href="{echo:$NowDomainUrl;/}assets/three/js/jPlayer/jplayer.flat.css" type="text/css" />
+		<link rel="stylesheet" href="{echo:$NowDomainUrl;/}assets/three/css/animate.css" type="text/css" />
+		<link rel="stylesheet" href="{echo:$NowDomainUrl;/}assets/three/css/font-awesome.min.css" type="text/css" />
+		<link rel="stylesheet" href="{echo:$NowDomainUrl;/}assets/three/css/simple-line-icons.css" type="text/css" />
+		<link rel="stylesheet" href="{echo:$NowDomainUrl;/}assets/three/css/font.css" type="text/css" />
+		<link rel="stylesheet" href="{echo:$NowDomainUrl;/}assets/three/css/app.css" type="text/css" />
+		<!--[if lt IE 9]>
+		<script src="{echo:$NowDomainUrl;/}assets/three/js/ie/html5shiv.js"></script>
+		<script src="{echo:$NowDomainUrl;/}assets/three/js/ie/respond.min.js"></script>
+		<script src="{echo:$NowDomainUrl;/}assets/three/js/ie/excanvas.js"></script>
+		<![endif]-->
+		<!--[if lt IE 7]>
+		<link rel="stylesheet" type="text/css" href="{echo:$NowDomainUrl;/}assets/css/highslide-ie6.css" />
+		<![endif]-->
+	</head>
+	<body>
+		
+
+	{inc: include tpl_engine($SYSINFO['templates_name'],"header.html",1);/}
+
+		<!--Mainbody-开始-->
+		<div class="mainbody">
+			<div class="container">
+				<div class="row ">
+					<div class="col-lg-3 col-md-3 course-type">
+						
+					{inc: include tpl_engine($SYSINFO['templates_name'],"threemodel_left.html",1);/}
+						
+					</div>
+					<div class="col-lg-9 col-md-9">
+						<div class="jjtitle"></div>
+						<div class="jjcontent">
+							<img src="../images/pfjj.jpg" alt="">
+						</div>
+					</div>
+					<div class="col-lg-9 col-md-9 couse-list">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+					<span class="musicbar animate inline m-l-sm" style="width:20px;height:20px">
+                    <span class="bar1 a1 bg-primary lter"></span>
+                    <span class="bar2 a2 bg-info lt"></span>
+                    <span class="bar3 a3 bg-success"></span>
+                    <span class="bar4 a4 bg-warning dk"></span>
+                    <span class="bar5 a5 bg-danger dker"></span></span> 模型首页</h3>
+
+							</div>
+							<div class="panel-body">
+								<div class="row">
+			
+            <section>
+                  <div class="row row-sm">
+			{if($result['result'])[exc]}
+			{foreach($result['result'] as $v)[exc]}
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                      <div class="item">
+                        <div class="pos-rlt">
+                          <div class="item-overlay opacity r r-2x bg-black">
+                            <div class="center text-center m-t-n">
+                              <a href="{echo:URL_NAV('threemodel_mod-show~lid-'.$v[id]);/}"><i class="icon-magnifier i-2x"></i></a>
+                            </div>
+                            <div class="bottom padder m-b-sm">
+                              <a href="javascript:;" class="pull-right" title="{echo:$v[goodnum];/}赞">
+								{echo:$v[goodnum];/} <i class="fa fa-heart"></i>
+                              </a>
+                            </div>
+                          </div>
+                          <div class="top">
+					{if($v[modmoney]>0||$v[modscore]>0)[exc]}
+						{if($v[modmoney]>0)[exc]}
+                            <span class="pull-right m-t-sm m-r-sm badge bg-primary">{echo:$v[modmoney];/}汇币</span>
+						{/if}
+						{if($v[modscore]>0)[exc]}
+                            <span class="pull-right m-t-sm m-r-sm badge bg-warning">{echo:$v[modscore];/}积分</span>
+						{/if}
+					{else}
+							<span class="pull-right m-t-sm m-r-sm badge bg-success">FREE</span>
+					{/if}
+                          </div>
+                          <a href="{echo:URL_NAV('threemodel_mod-show~lid-'.$v[id]);/}" title="{echo:$v[subject];/}" class="CZJZ"><img src="{echo:$v[imgurl];/}" alt="{echo:$v[subject];/}" class="r r-2x img-full"></a>
+                        </div>
+                        <div class="padder-v">
+                          <a href="{echo:URL_NAV('threemodel_mod-show~lid-'.$v[id]);/}" class="text-ellipsis">{echo:$v[subject];/}</a>
+                          <small>{echo:date('Y-m-d H:i',$v[addtime]);/}</small>
+                        </div>
+                      </div>
+                    </div>
+			{/foreach}
+			{/if}
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      <h3 class="font-thin">最新模型</h3>
+                      <div class="row row-sm">
+					{if($newlist)[exc]}
+					{foreach($newlist as $v)[exc]}
+                        <div class="col-xs-6 col-sm-4">
+                          <div class="item">
+                            <div class="pos-rlt">
+                              <div class="item-overlay opacity r r-2x bg-black">
+                                <div class="center text-center m-t-n">
+								   <a href="{echo:URL_NAV('threemodel_mod-show~lid-'.$v[id]);/}"><i class="icon-magnifier i-2x"></i></a>
+                                </div>
+                              </div>
+							  <a href="{echo:URL_NAV('threemodel_mod-show~lid-'.$v[id]);/}" title="{echo:$v[subject];/}" class="CZJZ"><img src="{echo:$v[imgurl];/}" alt="{echo:$v[subject];/}" class="r r-2x img-full"></a>
+                            </div>
+                            <div class="padder-v">
+                              <a href="{echo:URL_NAV('threemodel_mod-show~lid-'.$v[id]);/}"  class="text-ellipsis">{echo:$v[subject];/}</a>
+                              <small>{echo:date('Y-m-d H:i',$v[addtime]);/}</small>
+                            </div>
+                          </div>
+                        </div>
+					{/foreach}
+					{/if}
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <h3 class="font-thin">赞神联盟</h3>
+                      <div class="list-group bg-white list-group-lg no-bg auto">   
+					{if($puser_list)[exc]}
+					{foreach($puser_list as $k=>$v)[exc]}   
+                        <a href="{echo:URL_NAV('home_'.($v[user_id]+80000));/}" target="_blank" title="{echo:$v[user_name];/}" class="list-group-item clearfix">
+                          <span class="pull-right h2 text-muted m-l">{echo:$k+1;/}</span>
+                          <span class="pull-left thumb-sm avatar m-r">
+                            <img src="{echo:$v[user_ico];/}" alt="{echo:$v[user_name];/}">
+                          </span>
+                          <span class="clear">
+                            <span>{echo:$v[user_name];/}</span>
+                          </span>
+						  <small class="text-muted">累计 <b>{echo:$v[goodnum];/}</b> 赞</small>
+                        </a>
+					{/foreach}
+					{/if}
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+								</div>
+								
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Mainbody-结束-->
+
+	  <script src="{echo:$NowDomainUrl;/}assets/three/js/jquery.min.js"></script>
+	  <!-- Bootstrap -->
+	  <script src="{echo:$NowDomainUrl;/}assets/three/js/bootstrap.js"></script>
+	  <!-- App --> 
+	  <script src="{echo:$NowDomainUrl;/}assets/three/js/app.js"></script>  
+	  <script src="{echo:$NowDomainUrl;/}assets/three/js/slimscroll/jquery.slimscroll.min.js"></script>
+	  <script src="{echo:$NowDomainUrl;/}assets/three/js/app.plugin.js"></script>
+	  <script src="{echo:$NowDomainUrl;/}assets/three/js/plugin.js"></script>
+	  <script type="text/javascript" src="{echo:$NowDomainUrl;/}assets/three/js/jPlayer/jquery.jplayer.min.js"></script>
+	  <script type="text/javascript" src="{echo:$NowDomainUrl;/}assets/three/js/jPlayer/add-on/jplayer.playlist.min.js"></script>
+	  <script type="text/javascript" src="{echo:$NowDomainUrl;/}assets/three/js/jPlayer/demo.js"></script>
+
+
+	  {inc: include tpl_engine($SYSINFO['templates_name'],"threemodel_footer.html",1);/}
+	</body>
+</html>

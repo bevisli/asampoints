@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	
+	<title>{echo:$SYSTEM_TITLE;/}</title>
+	
+	<meta name="keyword" content="{echo:$SYSTEM_KEYWORD;/}" />
+	<meta name="description" content="{echo:$SYSTEM_DESCRIPTION;/}" />
+	<link rel="shortcut" href="images/favicon.ico" />
+	<base href="{echo: $baseUrl;/}" /> 
+	
+	<!-- 1140px Grid styles for IE -->
+	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+	<![endif]-->
+
+	<link rel="stylesheet" href="css/1140.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/style.css" media="screen" />
+	
+	<!-- HTML5 Shiv + detect touch events -->
+	<script type="text/javascript" src="js/modernizr.custom.js"></script>
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<!--[if lt IE 9]><script src="js/selectivizr-and-extra-selectors.min.js"></script>
+	<![endif]-->
+	<script src="js/respond.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.cycle.all.min.js"></script>
+	<script src="js/fancybox/jquery.fancybox.pack.js"></script>
+	<script src="js/custom.js"></script>
+</head>
+<body class="h-style-1 text-1">
+
+<div class="wrap">
+	<!-- 顶部 html 块 -->
+	{inc: include("header.php");/}
+
+
+	<!-- - - - - - - - - - - - - - Main - - - - - - - - - - - - - - - - -->		
+		
+	<section class="main sbr clearfix">		
+		
+		<div class="row">
+			
+			<h5>报名参与</h5>
+			
+			<!-- - - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->	
+
+			<section id="content" class="ninecol">
+				
+				<div class="box-toggle">
+
+					<span class="trigger active"> 参与活动信息 </span>
+
+					<div class="toggle-container toggle-container-show">
+						<p>
+							<span><b>主题:　</b><a href="{echo:URL_ACT('act',$Act_Info[cat_id],$Act_Info[act_id]);/}" title="{echo:$Act_Info[title];/}">{echo:$Act_Info[title];/} <img src="images/icons/social-li.gif"></a></span>
+						</p>
+						<p>
+							<span><b>地点:　</b>{echo:$Act_Info[where];/}</span>
+						</p>
+						<p>
+							<span><b>日期:　</b>{echo: date('Y年m月d日',$Act_Info[act_stime]);/}</span>
+						</p>
+						<p>
+							<span><b>时间:　</b>{echo: date('H:i',$Act_Info[act_stime]);/} - {echo: date('H:i',$Act_Info[act_etime]);/}</span>
+						</p>
+					</div><!--/ .toggle-container--> 
+
+				</div><!--/ .box-toggle-->
+
+				<div id="contact">
+
+					<form method="post" action="{echo:URL_APPLY('apply',$Act_Info[act_id]);/}" class="contact-form" id="contactform" />
+
+						<p class="input-block">
+							<label for="name">您的姓名 <span class="required tcolor">(*)</span></label>
+							<input type="text" name="required_name" id="required_name" />
+							<input type="hidden" name="required_catid" id="required_catid" value="{echo:$Act_Info[cat_id];/}" />
+							<input type="hidden" name="required_actid" id="required_actid" value="{echo:$Act_Info[act_id];/}" />
+						</p>
+
+				<div class="clear"></div>
+						<p class="input-block">
+							<label for="email">您的邮箱 <span class="required tcolor">(*)</span></label>
+							<input type="text" name="required_email" id="required_email" />
+						</p>
+
+				<div class="clear"></div>
+						<p class="input-block">
+							<label for="web">您的联系电话/手机 <span class="required tcolor">(*)</span></label>
+							<input type="text" name="required_tel" id="required_tel" />
+						</p>
+
+				<div class="clear"></div>
+						<p class="textarea-block">
+							<label for="message">备注信息: </label>
+							<textarea name="required_message" id="required_message" cols="15" rows="7"></textarea>	
+						</p>
+
+						<p class="input-block">
+							<a class="button orange bcolor" type="button" onclick="onclickform();" id="submit_apply">确定提交</a><span id="load-msg" ></span>
+						</p>
+						
+					</form><!--/ .contact-form-->			   
+
+				</div><!--/ #contact-->	
+
+			</section><!--/ #content-->
+
+			<!-- - - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - - -->	
+
+
+
+			<!-- - - - - - - - - - - - - - - Sidebar - - - - - - - - - - - - - - - - -->	
+
+			<aside id="sidebar" class="threecol last">
+				
+				
+				<div class="widget-container widget_latest_tweets">
+
+					<h3 class="widget-title">推荐产品</h3>
+					
+					  {sta:if($digg_soft)[exc]}
+						{sta:foreach($digg_soft as $kk=>$vv)[loop]}
+							<div class="twelvecol height400 {sta:if($kk==2||$kk==5||$kk==8)[exc]}last{end:if/}">
+								
+								<h6><a href="{echo:URL_PRO('pro',$vv[cat_id],$vv[pro_id]);/}">{echo:$vv[title];/}</a></h6>
+								
+								<p>
+									<img class="icon" src="{echo:$vv[thumb];/}" alt="{echo:$vv[title];/}" />
+									{echo:sub_str($vv[summary],88);/}
+								</p>
+								<div class="clear"></div>
+								
+								<a href="{echo:URL_PRO('pro',$vv[cat_id],$vv[pro_id]);/}" data-arrow="&nbsp;&rarr;" class="more tcolor alignright">详细信息</a>
+								
+								<div class="blank-separator"></div>
+								
+							</div><!--/ .threecol-->
+						{end:loop/}
+					  {sta:}else[exc]}
+					  <center>暂无推荐产品</center>
+					  {end:if/}
+
+				</div><!--/ .widget-container-->
+					
+			</aside><!--/ #sidebar-->
+
+			<!-- - - - - - - - - - - - - end Sidebar - - - - - - - - - - - - - - - - -->
+			
+			
+		</div><!--/ .row-->
+
+	</section><!--/ .main -->
+
+	<!-- - - - - - - - - - - - - end Main - - - - - - - - - - - - - - - - -->			
+		
+
+
+
+
+
+
+<!-- ==========================================以下是脚注================================================= -->
+	{inc: require("footer.php");/}
+</body>
+</html>

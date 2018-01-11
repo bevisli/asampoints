@@ -1,0 +1,493 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+	<head>
+		<title>{echo:$SYSINFO['sys_title'];/}</title>
+		<base href="{echo:$baseUrl;/}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="layout/images/favicon.ico" type="image/vnd.microsoft.icon" />
+		<meta http-equiv="Content-Type" content="text; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="keywords" content="{echo:$SYSINFO['sys_keywords'];/}">
+		<meta name="description" content="{echo:$SYSINFO['sys_description'];/}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
+		<!--<link href="assets/css/docs.css" rel="stylesheet" media="screen">-->
+		<link href="assets/css/atc.css" rel="stylesheet" media="screen">
+		<link href="assets/css/other.css" rel="stylesheet" media="screen">
+
+		<!--[if lt IE 9]>
+		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+	{inc: include tpl_engine($SYSINFO['templates_name'],"header.html",1);/}
+
+
+		<!--直播列表-开始-->
+		<div class="online-course">
+			<div class="container">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs oc-date" role="tablist">
+				{sta:if($get_show_week[showdays])[exc]}
+					{sta:foreach($get_show_week[showdays] as $k=>$v)[exc]}
+						{if($k==0)[exc]}
+						<li class="active">
+							<a href="#weekday{echo:$k;/}" role="tab" data-toggle="tab">
+								<strong>今日直播</strong>
+							</a>
+						</li>
+						{else}
+						<li>
+							<a href="#weekday{echo:$k;/}" role="tab" data-toggle="tab">
+								<strong>{echo:$v;/}</strong>
+							</a>
+						</li>
+						{/if}
+					{/foreach}
+				{/if}
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+				{if($get_show_week[showdays])[exc]}
+					{foreach($get_show_week[showdays] as $kk=>$vv)[exc]}
+					<div class="tab-pane {if($kk==0)[exc]}active{/if} oc-list" id="weekday{echo:$kk;/}">
+						<div class="row">
+							{if(show_list_model('free',' and stime>='.strtotime($get_show_week[showtimes][$kk].' 00:00:00').' and etime<='.strtotime($get_show_week[showtimes][$kk].' 23:59:59').' order by nums desc',8))[exc]}
+								{foreach(show_list_model('free',' and stime>='.strtotime($get_show_week[showtimes][$kk].' 00:00:00').' and etime<='.strtotime($get_show_week[showtimes][$kk].' 23:59:59').' order by nums desc',8) as $k=>$v)[exc]}
+								
+								<div class="col-lg-3">
+								{if(time()>$v[stime]&&$v[etime]>time())[exc]}
+									<div class="panel panel-primary thumbnail">
+								{else}
+									<div class="panel panel-success thumbnail">
+								{/if}
+										<div class="panel-heading ">
+											<h5><span class="glyphicon glyphicon-time"></span>{echo:date('m月d日',$v[stime]);/}：{echo:date('H:i',$v[stime]);/}~{echo:date('H:i',$v[etime]);/}</h5>
+										</div>
+										<div class="panel-body">
+											<p class="text-right">
+												{echo:$v[subject];/}
+											</p>
+								{if(time()>$v[stime]&&$v[etime]>time())[exc]}
+											<button type="button" class="btn btn-primary btn-sm pull-right">
+												进入课堂
+											</button>
+								{else}
+											<button type="button" class="btn btn-success btn-sm pull-right contactpop">
+												咨询老师
+											</button>
+								{/if}
+
+										</div>
+									</div>
+								</div>
+								{end:if/}
+							{else}
+								<div class="col-sm-12 col-md-12 col-lg-12">
+																<center><a href="/video/index.html"><img class="img-responsive" src="images/noneoline.gif" alt="暂无课程！"/></a></center>
+
+								</div>
+							{end:if/}
+						</div>
+					</div>
+					{/foreach}
+				{/if}
+				</div>
+			</div>
+		</div>
+		<!--直播列表-结束-->
+		<!--首页课程-开始-->
+		<div class="course">
+			<div class="container">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active">
+						<a href="#hots" role="tab" data-toggle="tab">
+							<strong>热门</strong>
+						</a>
+					</li>
+				{sta:if($soft_list)[exc]}
+					{sta:foreach($soft_list as $k=>$v)[exc]}
+					<li>
+						<a href="#{echo:$v[subject];/}" role="tab" data-toggle="tab">
+							<strong>{echo:$v[subject];/}</strong>
+						</a>
+					</li>
+					{end:if/}
+				{end:if/}
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+						<div class="tab-pane fade in active" id="hots">
+							<div class="row">
+								{sta:if(show_list_model('course',' and is_digg=1 order by nums desc',6))[exc]}
+									{sta:foreach(show_list_model('course',' and is_digg=1 order by nums desc',6) as $k=>$v)[exc]}
+									<div class="col-sm-6 col-md-4 col-lg-4">
+										<div class="thumbnail">
+											<a href="{echo:URL_NAV('course_'.$show_soft_urlcode[$v[soft_id]].'_'.$v[cat_id].'_'.$v[id]);/}"><img src="{echo:$v[imgurl];/}" class="img-responsive" alt="{echo:$v[subject];/}"></a>
+											<div class="caption">
+												<h4>{echo:$v[subject];/}</h4>
+												<p>
+													讲师：{echo:$showteacher[$v[teacher_id]];/}
+												</p>
+												<p>
+													<a href="{echo:URL_NAV('course_'.$show_soft_urlcode[$v[soft_id]].'_'.$v[cat_id].'_'.$v[id]);/}" class="btn btn-primary" role="button">
+														立即报名
+													</a>
+													<a href="javascript:;" class="btn btn-default contactpop" role="button">
+														课程咨询
+													</a>
+												</p>
+											</div>
+										</div>
+									</div>
+									{end:if/}
+								{end:if/}
+							</div>
+						</div>
+				{sta:if($soft_list)[exc]}
+					{sta:foreach($soft_list as $kk=>$vv)[exc]}
+						<div class="tab-pane fade in" id="{echo:$vv[subject];/}">
+							<div class="row">
+								{sta:if(show_list_model('course',' and soft_id='.$vv[id].' order by nums desc',6))[exc]}
+									{sta:foreach(show_list_model('course',' and soft_id='.$vv[id].' order by nums desc',6) as $k=>$v)[exc]}
+									<div class="col-sm-6 col-md-4 col-lg-4">
+										<div class="thumbnail">
+											<a href="{echo:URL_NAV('course_'.$show_soft_urlcode[$v[soft_id]].'_'.$v[cat_id].'_'.$v[id]);/}"><img src="{echo:$v[imgurl];/}" class="img-responsive" alt="{echo:$v[subject];/}"></a>
+											<div class="caption">
+												<h4>{echo:$v[subject];/}</h4>
+												<p>
+													讲师：{echo:$showteacher[$v[teacher_id]];/}
+												</p>
+												<p>
+													<a href="{echo:URL_NAV('course_'.$show_soft_urlcode[$v[soft_id]].'_'.$v[cat_id].'_'.$v[id]);/}" class="btn btn-primary" role="button">
+														立即报名
+													</a>
+													<a href="javascript:;" class="btn btn-default contactpop" role="button">
+														课程咨询
+													</a>
+												</p>
+											</div>
+										</div>
+									</div>
+									{end:if/}
+								{else}
+									<div class="col-sm-6 col-md-4 col-lg-4">
+									<center><img src="../images/nocourse.jpg"/></center>
+									</div>
+								{end:if/}
+							</div>
+						</div>
+					{end:if/}
+				{end:if/}
+
+				</div>
+			</div>
+		</div>
+		<!--首页课程-结束-->
+		<!--jion us开始-->
+		<div id="joinus">
+			<div class="container">
+				<h2>已加入的小伙伴</h2>
+				<div id="speak">
+					<strong>Revit帮助我做出了负责的机电项目，汇识学院的课程让我深入理解了BIM思想及建模思路，让我熟练的掌握了Revit MEP的操作技能！</strong><i class="arrowdown" style="left: 751px;"></i>
+				</div>
+				<ul class="row">
+					<li class="col-lg-3 col-md-3 hidden-xs" rel="106">
+						<div class="pics">
+							<img width="90" height="90" alt="你要做的就是马上行动开始学习，然后坚持不懈，到时候就会发现，哦，原来其实也不难，在汇识学院学习就是这么简单；" src="assets/img/user_1.png">
+						</div><h5>陈才兴</h5>
+						<p>
+							工业产品设计师
+						</p>
+					</li>
+					<li rel="323" class="col-lg-3 col-md-3 hidden-x">
+						<div class="pics">
+							<img width="90" height="90" alt="初接触Inventor时，真的迷茫，不知道设计流程是怎么走的，也就不知道怎么样利用功能做出符合要求的设计，汇识学院帮我慢慢摸通了门路，原来我也可以做到！" src="assets/img/user_2.png">
+						</div><h5>李建</h5>
+						<p>
+							机械设计工程师
+						</p>
+					</li>
+					<li rel="536" class="col-lg-3 col-md-3 hidden-x">
+						<div class="pics">
+							<img width="90" height="90" alt="BIM是未来建筑设计的趋势，我很庆幸在汇识学院接受了系统的BIM思想及Revit软件操作技能训练！" src="assets/img/user_3.png">
+						</div><h5>林可</h5>
+						<p>
+							建筑设计师
+						</p>
+					</li>
+					<li rel="751" class="active col-lg-3 col-md-3 hidden-x">
+						<div class="pics">
+							<img width="90" height="90" alt="Revit帮助我做出了负责的机电项目，汇识学院的课程让我深入理解了BIM思想及建模思路，让我熟练的掌握了Revit MEP的操作技能！" src="assets/img/user_4.png">
+						</div><h5>王梦</h5>
+						<p>
+							机电工程师
+						</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+		<!--jion us结束-->
+		<!--首页广告区开始一-->
+		<div class="container">
+			<div class=" ad">
+				<div class="ad-list">
+					<div class="row ">
+						<div class="col-lg-5 col-md-6 col-xs-6" style=" border-right:1px solid #ddd;">
+							<img width="100%" class="img-responsive box-sh " src="assets/images/32course.jpg"/>
+						</div>
+						<div class="col-lg-7 col-md-6 col-xs-6" style="padding:10px 20px;">
+							<h1 style="font-size:48px;color: red;">32+<small style="font-size:28px;padding-left: 10px;">新技术应用课程，前沿的技术帮助你设计！</small></h1>
+							<p  style="line-height: 30px;font-size:16px; color:#777;">
+								汇识学院（huishiatc.com）是Autodesk授权ATC培训中心，我们拥有最新的技术体系、最专业的培训教师队伍、我们有大量的面向企业实战性培训经验！没什么能够阻止我们成长为一家专业的在线培训教育机构，我们有能力有欲望让我们的学员走出我们的培训体系后成为企业的设计之才！
+							</p>
+						</div>
+					</div>
+				</div>
+				<hr class="list-d" />
+				<div class="ad-list">
+					<div class="row add-2">
+						<div class="col-lg-2 col-md-3 col-xs-6 text-center">
+							<img class=" box-sh img-circle" src="assets/images/px1.jpg"/>
+							<h3>ATC中心</h3>
+							<small>autodesk授权培训中心</br>官方技术支持保证</small>
+						</div>
+						<div class="col-lg-2  col-md-3 col-xs-6 text-center ">
+							<img class=" box-sh img-circle" src="assets/images/px2.jpg"/>
+							<h3>专业讲师</h3>
+							<small>名师上课保证质量</br>
+								企业培训经验保证效果</small>
+						</div>
+						<div class="col-lg-2  col-md-3 col-xs-6 text-center ">
+							<img class=" box-sh img-circle" src="assets/images/px3.jpg"/>
+							<h3>实战作业</h3>
+							<small>作业成果交流互动</br>
+								零距离与老师对话作业疑问</small>
+						</div>
+						<div class="col-lg-2  col-md-3 col-xs-6 text-center ">
+							<img class=" box-sh img-circle" src="assets/images/px4.jpg"/>
+							<h3>企业培训</h3>
+							<small>我们有100+的大型企业</br>
+								培训敬仰帮助学员学以致用</small>
+						</div>
+						<div class="col-lg-2  col-md-3 col-xs-6 text-center ">
+							<img class=" box-sh img-circle" src="assets/images/px5.jpg"/>
+							<h3>7*24</h3>
+							<small>全年、全天候服务</br>
+								主意、文字、论坛授课、解答</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="ad3">
+				<ul class="nav nav-tabs  oc-date" role="tablist">
+					<li class="active">
+						<a href="#user1" role="tab" data-toggle="tab">
+							<strong>用户评价</strong>
+						</a>
+					</li>
+					<li>
+						<a href="#user2" role="" data-toggle="tab">
+							<strong>合作院校</strong>
+						</a>
+					</li>
+					<li>
+						<a href="#user3" role="tab" data-toggle="tab">
+							<strong>服务过的院校</strong>
+						</a>
+					</li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content hidden-xs">
+					<div class="tab-pane active oc-list" id="user1">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-xs-12 ">
+								<div class="panel panel-default  box-sh">
+									<div class="panel-body">
+										<img class="img-responsive" src="assets/images/urser1.gif"/>
+									</div>
+									<div class="panel-footer">
+										“贵公司的完善的咨询服务，帮助我们快速的部署企业设计环境，让我们部门更好的利用软件加速设计！”
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-xs-12">
+								<div class="panel panel-default  box-sh">
+									<div class="panel-body">
+										<img class="img-responsive" src="assets/images/urser2.gif"/>
+									</div>
+									<div class="panel-footer">
+										“贵公司的完善的咨询服务，帮助我们快速的部署企业设计环境，让我们部门更好的利用软件加速设计！”
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-xs-12">
+								<div class="panel panel-default  box-sh">
+									<div class="panel-body">
+										<img class="img-responsive" src="assets/images/urser3.gif"/>
+									</div>
+									<div class="panel-footer">
+										“贵公司的完善的咨询服务，帮助我们快速的部署企业设计环境，让我们部门更好的利用软件加速设计！”
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-xs-12">
+								<div class="panel panel-default  box-sh">
+									<div class="panel-body">
+										<img class="img-responsive" src="assets/images/urser4.gif"/>
+									</div>
+									<div class="panel-footer">
+										“贵公司的完善的咨询服务，帮助我们快速的部署企业设计环境，让我们部门更好的利用软件加速设计！”
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row user-img-list">
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/user1.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/user2.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/user3.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/user4.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/user5.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/user6.gif"/>
+							</div>
+							
+						</div>
+					</div>
+					<div class="tab-pane oc-list" id="user2">
+						<div class="row user-img-list img-huidu">
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/s1.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/s2.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/s3.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/s4.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/s5.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/s6.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/s7.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<img class="img-responsive img-thumbnail" src="assets/images/s8.gif"/>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<small style="color: #777;">太多了我们只是举例...</small>
+							</div>
+
+						</div>
+					</div>
+					<div class="tab-pane oc-list" id="user3">
+						<div class="row school-list">
+							<div class="col-lg-2 col-md-2 hidden-xs" >
+								<p>
+									晋江华侨职业中专学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									厦门工商旅游学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									漳州第一职业中专学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									福建省侨兴轻工学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									泉州泉中职业中专学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									晋江职业中专学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									漳州第二职业中专学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									福建化工学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									淄博信息工程学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									福建工业学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									福州电子职业中专学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									集美职业技术学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									莆田海峡中专学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									集美轻工业学校
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-xs">
+								<p>
+									.......
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--首页广告区结束一-->
+
+	{inc: include tpl_engine($SYSINFO['templates_name'],"footer.html",1);/}
+
+</body>
+</html>

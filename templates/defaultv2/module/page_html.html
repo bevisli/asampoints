@@ -1,0 +1,15 @@
+<ul class="pagination">
+{if($result['countpage']>0)[exc]}
+	<li><a class="upPage" href="{echo:$result['preurl'];/}">上一页</a></li>
+		{if($first_page==1)[exc]}
+			<li {sta:if($result['page']==1||!$result['page'])[exc]} class="active" {end:if/}><a href="{echo:$result['nopage'];/}">{echo:'1';/}</a></li>
+		{/if}
+		{sta:for($i=$start_page;$i<=$end_page;$i++)[loop]}
+			<li {sta:if($i==$result['page'])[exc]} class="active" {end:if/}><a {sta:if($i==$result['page'])[exc]}class="now"{end:if/} href="{echo:$baseUrl.$page_curt[0].$i;/}">{echo:$i;/}</a></li>
+		{end:for/}
+		{if($last_page==1)[exc]}
+			<li><a href="{echo:$result['nopage'];/}">{echo: $result['countpage'];/}</a></li>
+		{/if}
+	<li><a class="nextPage" href="{echo:$result['nexturl'];/}" >下一页</a></li>
+{/if}
+</ul>

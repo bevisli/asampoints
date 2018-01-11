@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{echo:$SYSINFO['sys_name_cn'];/}-{echo:$SYSTEM_TITLE;/}</title>
+	<meta name="description" content="{echo:$SYSINFO['sys_name_cn'];/}-{echo:$SYSTEM_TITLE;/}">
+	<base href="{echo:$baseUrl;/}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<!-- Meta tags end -->
+
+<!-- Stylesheets starts here -->
+	<link rel="shortcut icon" href="images/icons/fevi.png" >
+	<link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/simple-line.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/owl.transitions.css" />
+    <link rel="stylesheet" href="css/owl.carousel.css" />
+    <link href="css/custom.css" rel="stylesheet" />
+    
+<!-- Stylesheets ends here -->
+
+</head>
+<!-- head end -->
+<style>
+.widget > h3,
+.widget .widget-title {
+  text-transform: uppercase;
+  border-bottom: 2px solid #e4e4e4;
+  background-color: #ffffff;
+  margin: 0 0 30px;
+  padding: 0 0 20px 0;
+  position: relative;
+}
+
+.widget > h3:before,
+.widget > h3:after,
+.widget .widget-title:before,
+.widget .widget-title:after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #fc7e42;
+}
+
+.widget > h3:after,
+.widget .widget-title:after {
+  height: 6px;
+  bottom: -4px;
+  left: 35px;
+  width: 30px;
+}
+/*vertical tabs*/
+
+@media (max-width: 767px) {
+	.vertical-tabs .nav > li {
+		float:left;
+		width:49.9%
+	}
+}
+@media (max-width: 400px) {
+	.vertical-tabs .nav > li {
+		float:left;
+		width:49.9%
+	}
+}
+.vertical-tabs .nav > li > a {
+  border: 2px solid #e4e4e4;
+  margin-bottom: 3px;
+  font-size: 16px;
+  line-height: 1.7em;
+  color:#333;
+}
+.vertical-tabs .nav > li.active a {
+  color: #fc7e42;
+}
+
+@media (min-width: 768px) {
+  .vertical-tabs .nav {
+    margin-right: -25px;
+  }
+  .vertical-tabs .nav > li.active {
+    position: relative;
+    z-index: 2;
+  }
+  .vertical-tabs .nav > li.active a:after,
+  .vertical-tabs .nav > li.active a:before {
+    display: block;
+    content: '';
+    width: 9px;
+    border-left: 9px solid #e4e4e4;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    height: 0;
+    position: absolute;
+    right: -9px;
+    top: 50%;
+    margin-top: -9px;
+  }
+  .vertical-tabs .nav > li.active a:after {
+    border-left-color: #fff;
+    border-left-width: 7px;
+  }
+}
+.tab-content {
+    padding: 0;
+    border-radius: 0 0 0 0;
+    background-color: #ffffff;
+    padding: 2px 2px;
+    border: 1px solid #e4e4e4;
+}
+#pagination > .container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.grey_section {
+    border-top: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+    margin-bottom: 10px;
+}
+</style>
+<body>
+	{inc: include tpl_engine($SYSINFO['templates_name'],"header.html",1);/}
+
+<div class="blog-section w100-l fixed-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 widget">
+				<h3>个人中心</h3>
+				<div class="row vertical-tabs">
+					<div class="col-sm-12 col-md-3">
+						{inc: include tpl_engine($SYSINFO['templates_name'],"center_left.html",1);/}
+					</div>
+
+					<div class="col-sm-12 col-md-9">
+						<!-- Tab panes -->
+							{inc: include tpl_engine($SYSINFO['templates_name'],"center_".$r[2].".html",1);/}
+							<div class="clearfix"></div>
+					</div>
+				</div>
+			 </div>
+		</div>
+	</div>
+</div><!-- /.blog-section -->
+	{inc: include tpl_engine($SYSINFO['templates_name'],"footer.html",1);/}
+	<script>
+	function showalert(keyw, stitle, divname) {
+		if (!divname || divname == undefined) {
+			divname = "#AllObjMsg";
+		}
+		BootstrapDialog.show({title:'系统提示',message:stitle});
+		if (keyw == 1) {
+			setTimeout("$('.modal-backdrop').remove();$('.bootstrap-dialog').remove();", 1000);
+		}
+	}
+	</script>
+</body>
+</html>

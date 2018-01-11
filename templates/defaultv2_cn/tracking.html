@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{echo:$SYSINFO['sys_name_cn'];/}-{echo:$SYSTEM_TITLE;/}</title>
+	<meta name="description" content="{echo:$SYSINFO['sys_name_cn'];/}-{echo:$SYSTEM_TITLE;/}">
+	<base href="{echo:$baseUrl;/}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<!-- Meta tags end -->
+
+<!-- Stylesheets starts here -->
+	<link rel="shortcut icon" href="images/icons/fevi.png" >
+	<link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/simple-line.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/owl.transitions.css" />
+    <link rel="stylesheet" href="css/owl.carousel.css" />
+    <link href="css/custom.css" rel="stylesheet" />
+    
+<!-- Stylesheets ends here -->
+
+</head>
+<!-- head end -->
+<body>
+	{inc: include tpl_engine($SYSINFO['templates_name'],"header.html",1);/}
+	<div class="inner-structure relative w100-l">
+	<img src="images/searchbanner.png" alt="about-banner" />
+</div><!-- /.banner-structure -->
+
+<div class="our-service-page w100-l searchpt">
+	<div class="cont container">
+    <div class="row">
+		<div class="col-md-12 searchtd">收件人手机号码查询</div>
+        <div class="col-md-12 search-searchtop">
+		<form action="{echo:URL_NAV('tracking');/}" class="row norow">
+        	<input id="keyword" name="keyword" placeholder="请输入收件人手机号码" type="text" class="form-control search-searchin" value="{echo:$post['keyword'];/}"> 
+            <button class="btn searchallbtn" type="submit"/></button>
+		</form>
+        </div><!-- /.row -->
+		
+		{if($result[result])[exc]}
+			<div class="col-md-12 searchtt">
+			<ul id="myTab" class="nav nav-tabs nav-stacked col-md-3 searchleft">
+			{if($result[result])[exc]}
+				{if(!$USER_INFO[user_id]&&count($result[result])>1)[exc]}
+				<li class="active">
+				  <a href="#ex_{echo:$result[result][0][pro_newid];/}" data-id="{echo:$v[pro_newid];/}" class="shoufei ajaxget" data-toggle="tab">
+					{echo:$result[result][0][pro_newid];/}
+				  </a>
+				</li>
+				<li>
+				  <a href="javascript:;" onclick="loginsend()" align="center" class="loginlook">
+					登录查看更多
+				  </a>
+				</li>
+				{else}
+				{foreach($result[result] as $k=>$v)[exc]}
+				<li {if($k==0)[exc]}class="active"{/if}>
+				  <a href="#ex_{echo:$v[pro_newid];/}" class="shoufei ajaxget" data-id="{echo:$v[pro_newid];/}" data-toggle="tab">
+					{echo:$v[pro_newid];/}
+				  </a>
+				</li>
+				{/foreach}
+				{/if}
+			{/if}
+			</ul>
+			<div id="myTabContent" class="tab-content col-md-9 searchright">
+			{if($result[result])[exc]}
+				{if(!$USER_INFO[user_id]&&count($result[result])>1)[exc]}
+					<div class="tab-pane fade in active" id="ex_{echo:$result[result][0][pro_newid];/}">
+						<div class="col-md-1 zhixuncontent-line"></div>
+						<p class="zhixunp">快递详情</p>
+						<p class="zhixunp2 showtext_{echo:$result[result][0][pro_newid];/}">加载中...</p>
+					</div>
+				{else}
+					{foreach($result[result] as $k=>$v)[exc]}
+					<div class="tab-pane fade {if($k==0)[exc]}in active{/if}" id="ex_{echo:$v[pro_newid];/}">
+						<div class="col-md-1 zhixuncontent-line"></div>
+						<p class="zhixunp">快递详情</p>
+						<p class="zhixunp2 showtext_{echo:$v[pro_newid];/}">加载中...</p>
+					</div>
+					{/foreach}
+				{/if}
+			{/if}
+				</div>
+			</div>
+			</div>
+		{else}
+		{if($post['keyword'])[exc]}
+			<center><p class="tis">没有任何相关物流单号</p></center>
+		{else}
+			<center><p class="tis">请输入正确的单号或者手机号进行查询</p></center>
+		{/if}
+		{/if}
+    </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.our-service-page -->
+	{inc: include tpl_engine($SYSINFO['templates_name'],"footer.html",1);/}
+	<script>
+			function showthefirst(val){
+				$('.showtext_'+val).html('<img src="../images/loading2.gif">加载中...');
+				$.get("/tracking/?act=ajaxget&dataid="+val, function(data){
+					$('.showtext_'+val).html(data);
+				});
+			}
+			$(document).ready(function(){ 
+				$('.ajaxget').click(function(){ 
+					var dataid=$(this).attr('data-id');
+					$('.showtext_'+dataid).html('<img src="../images/loading2.gif">加载中...');
+					$.get("/tracking/?act=ajaxget&dataid="+dataid, function(data){
+						$('.showtext_'+dataid).html(data);
+					});
+				});
+			{if($post['keyword'])[exc]}
+			showthefirst('{echo:$result[result][0][pro_newid];/}');
+			{/if}
+			});
+	</script>
+</body>
+</html>

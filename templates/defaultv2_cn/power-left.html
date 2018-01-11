@@ -1,0 +1,21 @@
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone" id="tbdh"></a>
+	<ul id="item">
+	{sta: foreach($POWER_NAV as $k => $v)[loop]}
+		<li {sta:if($v['url']=='power_'.$r[2])[exc]}class="active"{sta:}else[exc]}class=""{end:if/}  data-content="{echo:$v['url'];/}" >
+			<a href="{echo:URL_NAV($v['url']);/}">
+				<i><img src="img/ad/{echo:$v['url'];/}.png"></i>
+				<span>{echo:$v['subject'];/}</span>
+			</a>
+		</li>
+	{end:foreach/}
+	</ul>
+</div>
+<!--sidebar-menu-->
+<script>
+$(document).ready(function(){
+	$("#item").each(function(index, element) {
+		$("#tbdh").html($("#sidebar ul li.active a").html());
+	});
+});
+</script>

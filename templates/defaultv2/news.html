@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{echo:$SYSINFO['sys_name'];/}-{echo:$SYSTEM_TITLE;/}</title>
+	<meta name="description" content="{echo:$SYSINFO['sys_name'];/}-{echo:$SYSTEM_TITLE;/}">
+	<base href="{echo:$baseUrl;/}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<!-- Meta tags end -->
+
+<!-- Stylesheets starts here -->
+	<link rel="shortcut icon" href="images/icons/fevi.png" >
+	<link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/simple-line.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/owl.transitions.css" />
+    <link rel="stylesheet" href="css/owl.carousel.css" />
+    <link href="css/custom.css" rel="stylesheet" />
+    
+<!-- Stylesheets ends here -->
+
+</head>
+<!-- head end -->
+<body>
+	{inc: include tpl_engine($SYSINFO['templates_name'],"header.html",1);/}
+<div class="inner-structure relative w100-l">
+	<img src="images/zhixunbanner-en.jpg" alt="about-banner" />
+</div><!-- /.banner-structure -->
+
+{if($IS_Article!=1)[exc]}
+
+<div class="blog-section w100-l fixed-padding">
+	<div class="container">
+		<ul id="myTab" class="nav nav-tabs nav-stacked col-md-2 zhixunleft">
+			{if($cat_list)[exc]}
+				<li {if($r[2]=='')[exc]}class="active"{/if} ><a href="{echo:URL_NAV('news');/}" class="shoufei">All information</a></li>
+			{foreach($cat_list as $k => $v)[exc]}
+				<li {if($r[2]==$v['cat_id'])[exc]}class="active"{/if} ><a href="{echo:URL_NAV('news_'.$v['cat_id']);/}" class="shoufei">{echo:$v['cat_name'];/}</a></li>
+			{/foreach}
+			{/if}
+		</ul>
+		<div id="myTabContent" class="tab-content col-md-9 zhixunright">
+		   
+			
+			
+					{if($result['result'])[exc]}
+					{foreach($result['result'] as $v)[exc]}
+						<div class="tab-pane fade in active">
+							<div class="col-md-1 zhixuncontent-line"></div>
+							<p class="zhixunp"><a href="{echo:URL_NEWS('news',$v[cat_id],$v[article_id]);/}" target="_blank">{echo:$v['title'];/}</a></p>
+							<p class="zhixunp2"><span class="post-date tcolor">{echo: $v[add_time];/}</p>
+						</div>
+					{/foreach}
+					{else}
+					<div class='item' style='text-align:center;'>No content</div>
+					{/if}
+					<div class="clear"></div>
+					
+					<div class="wp-pagenavi clearfix">
+							<div class="pagenav clearfix">
+								{inc: require("module/page.php");/}
+							</div>
+					</div>
+
+		</div>
+	</div>
+</div><!-- /.blog-section -->
+
+
+	{else}
+
+
+
+		<div class="blog-section w100-l fixed-padding">
+			<div class="container">
+				<div id="myTabContent" class="tab-content col-md-12 zhixunright">
+				   
+					
+								<div class="tab-pane fade in active">
+									<p class="zhixunp" style="text-align:center;">{echo:$Article_Info[title];/}</p>
+									<p class="zhixunp2" style="text-align:center;"><small>column:<a href="{echo:URL_NEWS('news',$Article_Info[cat_id]);/}">{echo: $show_cat_list[$Article_Info[cat_id]][cat_name];/}</a> look:{echo: $Article_Info[click];/} Release time:{echo:$Article_Info[add_time];/}</small></p>
+									<div class="col-md-1 zhixuncontent-line" style="position: inherit; top: 0px;  height: 3px;  background: #ff6633;  display: block;  width: 100%;  margin: 5px 0 10px 0;"></div>
+									<p class="zhixunp3">{echo:$Article_Info[content];/}</p>
+									
+								</div>
+							
+							<div class="clear"></div>
+							
+
+				</div>
+			</div>
+		</div><!-- /.blog-section -->
+
+
+	{/if}
+	{inc: include tpl_engine($SYSINFO['templates_name'],"footer.html",1);/}
+</body>
+</html>

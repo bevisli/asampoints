@@ -1,0 +1,15 @@
+<ul class="pagination">
+{sta:if($result['countpage']>0)[exc]}
+	<li><a class="upPage" href="{echo:$result['preurl'];/}"><i class="fa fa-chevron-left"></i></a></li>
+		{sta:if($first_page==1)[exc]}
+			<li class="active" ><a href="{echo:$result['nopage'] ;/}" >{echo:'1';/}</a></li>
+		{end:if/}
+		{sta:for($i=$start_page;$i<=$end_page;$i++)[loop]}
+			<li {sta:if($i==$result['page'])[exc]} class="active" {end:if/}><a {sta:if($i==$result['page'])[exc]} class="now" {end:if/} href="{echo:$baseUrl.$page_curt[0].$i.'.html';/}" >{echo:$i;/}</a></li>
+		{end:for/}
+		{sta:if($last_page==1)[exc]}
+			<li><a href="{echo:$result['nopage'];/}" >{echo: $result['countpage'];/}</a></li>
+		{end:if/}
+	<li><a class="nextPage" href="{echo:$result['nexturl'];/}" ><i class="fa fa-chevron-right"></i></a></li>
+{end:if/}
+</ul>

@@ -1,0 +1,15 @@
+<ul class="pagination">
+{sta:if($result['countpage']>0)[exc]}
+	<li><a class="upPage"  href="{echo:$baseUrl.$_SERVER_PHP_SELF.$result['preurl'];/}">上一页</a></li>
+		{sta:if($first_page==1)[exc]}
+			<li {sta:if($result['page']==1||!$result['page'])[exc]} class="active" {end:if/}><a href="{echo:$baseUrl.$_SERVER_PHP_SELF.$result['nopage'].'1' ;/}" >{echo:'1';/}</a></li>
+		{end:if/}
+		{sta:for($i=$start_page;$i<=$end_page;$i++)[loop]}
+			<li {sta:if($i==$result['page'])[exc]} class="active" {end:if/}><a {sta:if($i==$result['page'])[exc]} class="now" {end:if/} href="{echo:$baseUrl.$_SERVER_PHP_SELF.$result['nopage'].$i;/}" >{echo:$i;/}</a></li>
+		{end:for/}
+		{sta:if($last_page==1)[exc]}
+			<li><a href="{echo:$baseUrl.$_SERVER_PHP_SELF.$result['nopage'].$result['countpage'];/}" >{echo: $result['countpage'];/}</a></li>
+		{end:if/}
+	<li><a class="nextPage" href="{echo:$baseUrl.$_SERVER_PHP_SELF.$result['nexturl'];/}" >下一页</a></li>
+{end:if/}
+</ul>
