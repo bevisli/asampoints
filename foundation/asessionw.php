@@ -3,7 +3,7 @@ if(!$HUISHI_SOFT_IN){
 	die('Hacking attempt');
 }
 
-$HOSTURL='';
+$HOSTURL='huishisoft.com';
 
 ini_set("session.cookie_domain",$HOSTURL);
 if($_GET['PHPISD']){
