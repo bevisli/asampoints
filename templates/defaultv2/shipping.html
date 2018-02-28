@@ -38,94 +38,222 @@
 <div class="our-service-page w100-l searchpt">
 	<div class="cont container">
 		<div class="row">
-			<form action="{echo:URL_NAV('shipping');/}" method="post" target="i_frame" enctype="multipart/form-data">
-				<div class="col-md-12 searchtd">Recipient:</div>
-				<div class="col-md-12 search-searchtop">
-					<div class="col-md-2 sendin inputone">
-						<div class="col-md-2 inputone input-group">
-							<span class="input-group-addon">+</span>
-							<input type="text" class="form-control search-searchin" value="001" name="mobilecode" id="mobilecode" style="width:60px;" maxlength="4"  placeholder="国家代号" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
-						</div>
-					</div>
-					<div class="col-md-5 sendin inputone">
-							<input type="text" class="form-control search-searchin" name="mobile" id="mobile" maxlength="12" placeholder="monile"> 
-					</div>
-					{if($USER_INFO[user_id])[exc]}
-					<div class="col-md-3 inputtwo">
-						<input type="text" class="form-control search-searchin" name="uname" id="uname" placeholder="name" maxlength="25"> 
-					</div>
-					<div class="col-md-2 inputthree" >
-						<input type="file" name="imgurl[]" id="uimgurl[]" class="form-control search-searchin btnone" value="ID card upload" > 
-					</div>
-					{else}
-					<div class="col-md-3 inputthree">
-						<input type="text" class="form-control search-searchin" name="uname" id="uname" placeholder="name" maxlength="25"> 
-					</div>
-					<div class="col-md-2 inputthree" style="height:41px;padding-right: 0px;">
-						<input type="button" class="form-control search-searchin btnone" value="ID card upload" onclick="loginsend()" style="padding:0;"> 
-					</div>
-					{/if}
+			<form action="{echo:URL_NAV('shipping');/}" method="post" target="i_frame" enctype="multipart/form-data" class="form-horizontal" role="form">
+			    <div class="form-group">
+					<div class="col-md-2 searchtd control-label">Sender Information</div>
+					<div class="col-md-1" >
+		                <button type="button" class="btn btn-link" >Choosing Sender</button>
+	                </div>
 				</div>
-				<div class="col-md-12 search-searchtop sendtop">
-					<div class="col-md-12 sendin">
-						<input type="text" class="form-control search-searchin" name="uaddress" id="uaddress" placeholder="address"> 
+				<div class="form-group">
+	            	<label for="sendername" class="col-md-2  control-label">Sendername：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="sendername" id="sendername" placeholder="Sendername">
+		            </div>
+				    <label for="phonenumber" class="col-md-2  control-label">Phonenumber：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="phonenumber" id="phonenumber" placeholder="Phonenumber">
+		            </div>
+				</div>	
+				<div class="form-group">
+		            <label for="location" class="col-md-2  control-label">Location：</label>
+		            <div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="country" id="country" placeholder="Country">
+		            </div>
+		            <div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="city" id="city" placeholder="City">
+		            </div>
+		            <div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="canton" id="canton" placeholder="Canton">			
+					</div>
+					<label for="address" class="col-md-3  control-label">Address：</label>
+		            <div class="col-md-4">
+		       	        <input type="text" class="form-control search-searchin" name="address" id="address" placeholder="Detailed address">
+		            </div>		   
+	            </div>
+				<div class="form-group">
+					<label for="postcode" class="col-md-2  control-label">Postcode：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="postcode" id="postcode" placeholder="Postcode">
+		            </div>
+		            <label for="e-mail" class="col-md-2  control-label">E-mail：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="phonemuber" id="phonemuber" placeholder="E-mail">
+		            </div>
+				</div>	
+                <div class="form-group">
+					<div class="col-md-offset-2 col-md-2" >
+						<button type="button" class="form-control btn btn-primary">Saving the mailing address</button>
+					</div>
+				</div>	
+				<div class="form-group">
+					<label for="latticepoint" class="col-md-2 control-label">Lattice point:</label>  
+                    <div class="dropdown col-md-4">
+        	            <select class="form-control">
+                            <option value="point1">pointl</option>
+                            <option value="point2">point2</option>
+                            <option value="point3">point3</option>
+                        </select>
+				    </div>
+                    <label for="deliverychannel" class="col-md-2 control-label">Delivery channel：</label>  
+                    <div class="dropdown col-md-4">
+        	            <select class="form-control">
+                            <option value="channel1">channell</option>
+                            <option value="channel2">channel2</option>
+                        </select>
+				    </div>
+                </div>
+                <div class="form-group">
+					<div class="col-md-2 searchtd control-label">Addressee Information</div>
+					<div class="col-md-1" >
+		                <button type="button" class="btn btn-link">Choosing the addressee</button>
+	                </div>
+				</div>
+				<div class="form-group">
+	                <label for="addresseename" class="col-md-2  control-label">Addresseename：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="addresseename" id="addresseename" placeholder="Addresseename">
+		            </div>
+				    <label for="phonenumber" class="col-md-2  control-label">Phonenumber：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="phonenumber" id="phonenumber" placeholder="Phonenumber">
+		            </div>
+				</div>	
+				<div class="form-group">
+		            <label for="location" class="col-md-2  control-label">Province/City/Area：</label>
+	            	<div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="province" id="province" placeholder="Province">
+		            </div>
+		            <div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="city" id="city" placeholder="City">
+		            </div>
+		            <div class="col-md-1">
+		             	<input type="text" class="form-control search-searchin" name="area" id="area" placeholder="Area">
+				  	</div>
+					<label for="address" class="col-md-3 control-label">address：</label>
+		            <div class="col-md-4">
+		       	        <input type="text" class="form-control search-searchin" name="address" id="address" placeholder="Street address">
+		            </div>		   
+	            </div>
+                <div class="form-group">
+					<label for="postcode" class="col-md-2  control-label">Postcode：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="postcode" id="postcode" placeholder="Postcode">
+		            </div>
+		            <label for="e-mail" class="col-md-2  control-label">E-mail：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="phonemuber" id="phonemuber" placeholder="E-mail">
+		            </div>
+				</div>
+                <div class="form-group">
+					<div class="col-md-offset-2 col-md-2" >
+						<button type="button" class="form-control btn btn-primary">Saving the receiving address</button>
 					</div>
 				</div>
-				<div class="col-md-12 search-searchtop sendtop">
-					<div class="col-md-12 sendin">
-						<textarea rows="3" class="form-control search-searchin" cols="10" name="usentbrand" id="usentbrand" placeholder="Product Name"></textarea>
+                <div class="form-group">
+	            	<label for="name" class="col-md-2  control-label">Name：</label>
+		            <div class="col-md-6">
+			            <input type="text" class="form-control search-searchin" name="name" id="name" placeholder="The spelling of addresseename">
+		            </div>
+                </div>
+				<div class="form-group">
+	            	<label for="address" class="col-md-2  control-label">Address：</label>
+                    <div class="col-md-6">
+			            <input type="text" class="form-control search-searchin" name="address" id="address" placeholder="The spelling of addressee address">
+		            </div>
+                </div>
+                <div class="form-group">
+			        <label for="declaration" class="col-md-2 searchtd control-label">Declaration</label>
+					<div class="col-md-1" >
+		                <button type="button" class="btn btn-primary" >Newly added</button>
+	                </div>
+                </div>
+				<div class="form-group">
+					<label for="declarationcategory" class="col-md-2 control-label">Declaration category：</label>  
+					<div class="dropdown col-md-2">
+        	            <select class="form-control">
+                            <option value="category1">categoryl</option>
+                            <option value="category2">category2</option>
+                            <option value="category3">category3</option>
+                        </select>
+				    </div>
+                   <label for="commodity" class="col-md-2  control-label">Commodity：</label>
+		            <div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="commodity" id="commodity" placeholder="Using English">
+		            </div>
+					<label for="brand" class="col-md-2  control-label">Brand：</label>
+		            <div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="brand" id="brand" placeholder="Using English">
+		            </div>
+				</div>
+				<div class="form-group">
+					<label for="amount" class="col-md-2  control-label">Amount：</label>
+		            <div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="amount" id="amount">			
+					</div>
+                    <label for="unitprice" class="col-md-2  control-label">Unitprice：$</label>
+		            <div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="unitprice" id="unitprice">			
+					</div>
+                    <label for="unit" class="col-md-2  control-label">Unit：</label>
+                    <div class="dropdown col-md-2">
+        	            <select class="form-control">
+							<option value="piece">Piece</option>
+							<option value="pair">Pair</option>
+                        </select>
+                    </div>
+                </div>
+             	<div class="form-group">
+					<label for="declarationvalue" class="col-md-2 control-label">Declaration value：$</label>
+					<div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="declarationvalue" id="declarationvalue">			
 					</div>
 				</div>
-				<div class="col-md-12 search-searchtop sendtop1">
-					<div class="col-md-2 sendin inputtwo">
-						<input type="text" class="form-control search-searchin" name="usentnum" id="usentnum" placeholder="quantity"> 
+				<div class="form-group">
+					<div class="col-md-2 control-label">
+						<label>
+							<input type="checkbox" value="" > Whether offer$	
+						</label>
 					</div>
-					<div class="col-md-2 inputtwo " style="display: inline-table;">
-						<input type="text" class="form-control search-searchin" name="usentmoney" id="usentmoney" placeholder="unit price" value="0" readonly><div class="input-group-addon" style="width:40px;">￥</div>
-					</div>
-					<div class="col-md-2 inputtwo " style="display: inline-table;">
-						<input type="text" class="form-control search-searchin" name="usentweight" id="usentweight" placeholder="weight" maxlength="4"><div class="input-group-addon" style="width:40px;">kg</div>
-					</div>
-					<div class="col-md-6 inputtwo">
-						<input type="text" class="form-control search-searchin" name="usentgetmobile1" id="usentgetmobile1" placeholder="Alternate receiving logistics information mobile phone number"> 
-					</div>
+					<div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="amount" id="amount">			
+					</div>  
 				</div>
-				{if($USER_INFO[user_id])[exc]}
-				<div class="col-md-12 searchsend"><b>Sender:</b></div>
-				<div class="col-md-12 sendtop">
-					<div class="col-md-6 sendin inputone">
-						<span><b>Mobile：</b>+{echo:$USER_INFO[user_mobile_code];/}&nbsp;&nbsp;{echo:$USER_INFO[express_mobile];/}</span>
-					</div>
-					<div class="col-md-6 inputtwo">
-						<span><b>Name：</b>{echo:$USER_INFO[user_name];/}</span>
-					</div>
+				<div class="form-group">
+				    <div class="col-md-2 searchtd control-label">SenderIDcard</div>
 				</div>
-				<div class="col-md-12 sendtop1">
-					<div class="col-md-12 sendin inputone">
-						<span><b>Address：</b>{echo:$USER_INFO[express_address];/}</span>
-					</div>
+                <div class="form-group">
+					<label for="senderIDcard" class="col-md-2 control-label">SenderIDcard:</label>
+					 <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="senderIDcard" id="senderIDcard" placeholder="SenderIDcard">
+		            </div>
 				</div>
-				<div class="col-md-12 sendtop1">
-					<div class="col-md-12 sendin inputone">
+                <div class="form-group">
+				    <label for="photoobverse" class="col-md-2  control-label">Photoobverse</label>
+	                <label for="photoreverse" class="col-md-2  control-label">Photoreverse</label>	
+                </div>
+                <div class="form-group">
+	                <div class="col-md-2">
+		                <img src="" class="img-responsive" alt="Cinque Terre" width="100" height="70">
+		            </div>
+	                <div class="col-md-2">
+		                <img src="" class="img-responsive" alt="Cinque Terre" width="100" height="70">
+	                </div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-5">
 						<label>
 							<input type="checkbox" checked="" name="LoginForm[rememberMe]" value="1" class="gh-logbox-inp" style="margin: 0;"> 
-							<span class="gh-logbox-get">I have read and agreed</span><a href="{echo:URL_NAV('about_14');/}" class="privacy" target="_blank"><small>《Order agreement》</small></a>
+							<span class="gh-logbox-get">I have read and agreed</span><a href="javascript:;" data-toggle="modal" data-target="#myModal" class="privacy" ><small>《Ams order agreement》</small></a>
 						</label>
 					</div>
 				</div>
-				<div class="col-md-12 search-searchtop sendtop">
-					<div class="col-md-2 sendin">
+				<div class="form-group">
+					<div class="col-md-5">
 						<input type="hidden" name="act" value="add">
-						<button class="btn btn-lg regi" type="submit" name="submit">Send</button>
+						<button class="btn btn-lg regi" type="submit" name="submit">Place the order</button>
 					</div>
 				</div>
-				{else}
-				<div class="col-md-12 search-searchtop sendtop">
-					<div class="col-md-2 sendin">
-						<button onclick="loginsend()" class="btn btn-lg regi" data-toggle="modal" data-target="#myModal">Login</button>
-					</div>
-				</div>
-				{/if}
 				<IFrame id="i_frame" name="i_frame" width="0px" height="0px" style="display:none"></IFrame>
 			</form>
 		</div><!-- /.row -->

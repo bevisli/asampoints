@@ -38,94 +38,223 @@
 <div class="our-service-page w100-l searchpt">
 	<div class="cont container">
 		<div class="row">
-			<form action="{echo:URL_NAV('shipping');/}" method="post" target="i_frame" enctype="multipart/form-data">
-				<div class="col-md-12 searchtd">收件人:</div>
-				<div class="col-md-12 search-searchtop">
-					<div class="col-md-2 sendin inputone">
-						<div class="col-md-2 inputone input-group">
-							<span class="input-group-addon">+</span>
-							<input type="text" class="form-control search-searchin" value="001" name="mobilecode" id="mobilecode" style="width:60px;" maxlength="4"  placeholder="国家代号" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
-						</div>
-					</div>
-					<div class="col-md-5 sendin inputone">
-							<input type="text" class="form-control search-searchin" name="mobile" id="mobile" maxlength="12" placeholder="手机"> 
-					</div>
-					{if($USER_INFO[user_id])[exc]}
-					<div class="col-md-3 inputtwo">
-						<input type="text" class="form-control search-searchin" name="uname" id="uname" placeholder="姓名" maxlength="25"> 
-					</div>
-					<div class="col-md-2 inputthree">
-						<input type="file" name="imgurl[]" id="uimgurl[]" class="form-control search-searchin btnone" value="身份证上传"> 
-					</div>
-					{else}
-					<div class="col-md-3 inputthree">
-						<input type="text" class="form-control search-searchin" name="uname" id="uname" placeholder="姓名" maxlength="25"> 
-					</div>
-					<div class="col-md-2 inputthree" style="height:41px;">
-						<input type="button" class="form-control search-searchin btnone" value="身份证上传" onclick="loginsend()"> 
-					</div>
-					{/if}
+			<form action="{echo:URL_NAV('shipping');/}" method="post" target="i_frame" enctype="multipart/form-data" class="form-horizontal" role="form">
+			    <div class="form-group">
+					<div class="col-md-2 searchtd control-label">寄件人信息</div>
+					<div class="col-md-1" >
+		                <button type="button" class="btn btn-link" >选择寄件人</button>
+	                </div>
 				</div>
-				<div class="col-md-12 search-searchtop sendtop">
-					<div class="col-md-12 sendin">
-						<input type="text" class="form-control search-searchin" name="uaddress" id="uaddress" placeholder="地址"> 
+				<div class="form-group">
+	            	<label for="sendername" class="col-md-2  control-label">寄件人姓名：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="sendername" id="sendername" placeholder="寄件人姓名">
+		            </div>
+				    <label for="phonenumber" class="col-md-2  control-label">联系电话：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="phonenumber" id="phonenumber" placeholder="联系电话">
+		            </div>
+				</div>	
+				<div class="form-group">
+		            <label for="location" class="col-md-2  control-label">所在地：</label>
+		            <div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="country" id="country" placeholder="国家">
+		            </div>
+		            <div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="city" id="city" placeholder="城市">
+		            </div>
+		            <div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="canton" id="canton" placeholder="州">			
+					</div>
+					<label for="address" class="col-md-3  control-label">地址：</label>
+		            <div class="col-md-4">
+		       	        <input type="text" class="form-control search-searchin" name="address" id="address" placeholder="详细地址">
+		            </div>		   
+	            </div>
+				<div class="form-group">
+					<label for="postcode" class="col-md-2  control-label">邮编：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="postcode" id="postcode" placeholder="邮编">
+		            </div>
+		            <label for="e-mail" class="col-md-2  control-label">邮箱：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="phonemuber" id="phonemuber" placeholder="邮箱">
+		            </div>
+				</div>	
+                <div class="form-group">
+					<div class="col-md-offset-2 col-md-2" >
+						<button type="button" class="form-control btn btn-primary">保存寄件地址</button>
+					</div>
+				</div>	
+				<div class="form-group">
+					<label for="latticepoint" class="col-md-2 control-label">寄件网点：</label>  
+                    <div class="dropdown col-md-4">
+        	            <select class="form-control">
+                            <option value="网点1">网点l</option>
+                            <option value="网点2">网点2</option>
+                            <option value="网点3">网点3</option>
+                        </select>
+				    </div>
+                    <label for="delivery channel" class="col-md-2 control-label">发货渠道：</label>  
+                    <div class="dropdown col-md-4">
+        	            <select class="form-control">
+                            <option value="渠道1">渠道l</option>
+                            <option value="渠道2">渠道2</option>
+                        </select>
+				    </div>
+                </div>
+                <div class="form-group">
+					<div class="col-md-2 searchtd control-label">收件人信息</div>
+					<div class="col-md-1" >
+		                <button type="button" class="btn btn-link" >选择收件人</button>
+	                </div>
+				</div>
+				<div class="form-group">
+	                <label for="addresseename" class="col-md-2  control-label">收件人姓名：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="addresseename" id="addresseename" placeholder="收件人姓名">
+		            </div>
+				    <label for="phonenumber" class="col-md-2  control-label">联系电话：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="phonenumber" id="phonenumber" placeholder="联系电话">
+		            </div>
+				</div>	
+				<div class="form-group">
+		            <label for="location" class="col-md-2  control-label">省/市/区：</label>
+	            	<div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="province" id="province" placeholder="省">
+		            </div>
+		            <div class="col-md-1">
+			            <input type="text" class="form-control search-searchin" name="city" id="city" placeholder="市">
+		            </div>
+		            <div class="col-md-1">
+		             	<input type="text" class="form-control search-searchin" name="area" id="area" placeholder="区">
+				  	</div>
+					<label for="address" class="col-md-3 control-label">街道地址：</label>
+		            <div class="col-md-4">
+		       	        <input type="text" class="form-control search-searchin" name="address" id="address" placeholder="街道地址">
+		            </div>		   
+	            </div>
+                <div class="form-group">
+					<label for="postcode" class="col-md-2  control-label">邮编：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="postcode" id="postcode" placeholder="邮编">
+		            </div>
+		            <label for="e-mail" class="col-md-2  control-label">邮箱：</label>
+		            <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="phonemuber" id="phonemuber" placeholder="邮箱">
+		            </div>
+				</div>
+                <div class="form-group">
+					<div class="col-md-offset-2 col-md-2" >
+						<button type="button" class="form-control btn btn-primary">保存收件地址</button>
 					</div>
 				</div>
-				<div class="col-md-12 search-searchtop sendtop">
-					<div class="col-md-12 sendin">
-						<textarea rows="3" class="form-control search-searchin" cols="10" name="usentbrand" id="usentbrand" placeholder="品名"></textarea>
+                <div class="form-group">
+	            	<label for="name" class="col-md-2  control-label">Name：</label>
+		            <div class="col-md-6">
+			            <input type="text" class="form-control search-searchin" name="name" id="name" placeholder="收件人姓名拼音">
+		            </div>
+                </div>
+				<div class="form-group">
+	            	<label for="address" class="col-md-2  control-label">Address：</label>
+                    <div class="col-md-6">
+			            <input type="text" class="form-control search-searchin" name="address" id="address" placeholder="收件人地址拼音">
+		            </div>
+                </div>
+                <div class="form-group">
+			        <label for="declaration" class="col-md-2 searchtd control-label">申报物品</label>
+					<div class="col-md-1" >
+		                <button type="button" class="btn btn-primary" >新增</button>
+	                </div>
+                </div>
+				<div class="form-group">
+					<label for="declarationcategory" class="col-md-2 control-label">申报类别：</label>  
+					<div class="dropdown col-md-2">
+        	            <select class="form-control">
+                            <option value="类别1">类别l</option>
+                            <option value="类别2">类别2</option>
+                            <option value="类别3">类别3</option>
+                        </select>
+				    </div>
+                   <label for="commodity" class="col-md-2  control-label">商品名称：</label>
+		            <div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="commodity" id="commodity" placeholder="使用英文">
+		            </div>
+					<label for="brand" class="col-md-2  control-label">品牌：</label>
+		            <div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="brand" id="brand" placeholder="使用英文">
+		            </div>
+				</div>
+				<div class="form-group">
+					<label for="number" class="col-md-2  control-label">数量：</label>
+		            <div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="number" id="number">			
+					</div>
+                    <label for="unitprice" class="col-md-2  control-label">单价：$</label>
+		            <div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="unitprice" id="unitprice">			
+					</div>
+                    <label for="unit" class="col-md-2  control-label">单位：</label>
+                    <div class="dropdown col-md-2">
+        	            <select class="form-control">
+							<option value="件">件</option>
+							<option value="双">双</option>
+                        </select>
+                    </div>
+                </div>
+             	<div class="form-group">
+					<label for="declarationvalue" class="col-md-2 control-label">申报价值：$</label>
+					<div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="declarationvalue" id="declarationvalue">			
 					</div>
 				</div>
-				<div class="col-md-12 search-searchtop sendtop1">
-					<div class="col-md-2 sendin inputtwo">
-						<input type="text" class="form-control search-searchin" name="usentnum" id="usentnum" placeholder="数量"> 
+				<div class="form-group">
+					<div class="col-md-2 control-label">
+						<label>
+							<input type="checkbox" value="" > 是否报价$	
+						</label>
 					</div>
-					<div class="col-md-2 inputtwo " style="display: inline-table;">
-						<input type="text" class="form-control search-searchin" name="usentmoney" id="usentmoney" placeholder="单价" value="0" readonly><div class="input-group-addon" style="width:40px;">元</div>
-					</div>
-					<div class="col-md-2 inputtwo " style="display: inline-table;">
-						<input type="text" class="form-control search-searchin" name="usentweight" id="usentweight" placeholder="重量" maxlength="4"><div class="input-group-addon" style="width:40px;">kg</div>
-					</div>
-					<div class="col-md-6 inputtwo">
-						<input type="text" class="form-control search-searchin" name="usentgetmobile1" id="usentgetmobile1" placeholder="备用接收物流信息手机号码"> 
-					</div>
+					<div class="col-md-2">
+			            <input type="text" class="form-control search-searchin" name="amount" id="amount">			
+					</div>  
 				</div>
-				{if($USER_INFO[user_id])[exc]}
-				<div class="col-md-12 searchsend"><b>寄件人:</b></div>
-				<div class="col-md-12 sendtop">
-					<div class="col-md-6 sendin inputone">
-						<span><b>手机：</b>+{echo:$USER_INFO[user_mobile_code];/}&nbsp;&nbsp;{echo:$USER_INFO[express_mobile];/}</span>
-					</div>
-					<div class="col-md-6 inputtwo">
-						<span><b>姓名：</b>{echo:$USER_INFO[user_name];/}</span>
-					</div>
+				<div class="form-group">
+				    <div class="col-md-2 searchtd control-label">寄件人身份证</div>
 				</div>
-				<div class="col-md-12 sendtop1">
-					<div class="col-md-12 sendin inputone">
-						<span><b>地址：</b>{echo:$USER_INFO[express_address];/}</span>
-					</div>
+                <div class="form-group">
+					<label for="senderIDcard" class="col-md-2 control-label">身份证号码:</label>
+					 <div class="col-md-4">
+			            <input type="text" class="form-control search-searchin" name="senderIDcard" id="senderIDcard" placeholder="身份证号码">
+		            </div>
 				</div>
-				<div class="col-md-12 sendtop1">
-					<div class="col-md-12 sendin inputone">
+                <div class="form-group">
+				    <label for="photoobverse" class="col-md-2  control-label">正面照片</label>
+	                <label for="photoreverse" class="col-md-2  control-label">反面照片</label>	
+                </div>
+                <div class="form-group">
+	                <div class="col-md-2">
+		                <img src="" class="img-responsive" alt="Cinque Terre" width="100" height="70">
+		            </div>
+	                <div class="col-md-2">
+		                <img src="" class="img-responsive" alt="Cinque Terre" width="100" height="70">
+	                </div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-5">
 						<label>
 							<input type="checkbox" checked="" name="LoginForm[rememberMe]" value="1" class="gh-logbox-inp" style="margin: 0;"> 
-							<span class="gh-logbox-get">我已阅读并同意</span><a href="javascript:;" data-toggle="modal" data-target="#myModal" class="privacy" ><small>《下单协议》</small></a>
+							<span class="gh-logbox-get">我已阅读并同意</span><a href="javascript:;" data-toggle="modal" data-target="#myModal" class="privacy" ><small>《亚美速递下单协议》</small></a>
 						</label>
 					</div>
 				</div>
-				<div class="col-md-12 search-searchtop sendtop">
-					<div class="col-md-2 sendin">
+				<div class="form-group">
+					<div class="col-md-5">
 						<input type="hidden" name="act" value="add">
-						<button class="btn btn-lg regi" type="submit" name="submit">寄件提交</button>
+						<button class="btn btn-lg regi" type="submit" name="submit">下单</button>
 					</div>
 				</div>
-				{else}
-				<div class="col-md-12 search-searchtop sendtop">
-					<div class="col-md-2 sendin">
-						<button onclick="loginsend()" class="btn btn-lg regi">登录寄件</button>
-					</div>
-				</div>
-				{/if}
+				
 				<IFrame id="i_frame" name="i_frame" width="0px" height="0px" style="display:none"></IFrame>
 			</form>
 			<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
