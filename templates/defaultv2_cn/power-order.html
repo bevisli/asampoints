@@ -3,7 +3,7 @@
         <div class="general_content">
             <div class="main_content" id="orders" v-if="orders">
                 <div class="alert alert-info">
-                    <a href="{echo:URL_NAV(CUTURL('power_product'));/}">寄件列表</a><span>—</span><span
+                    <a href="{echo:URL_NAV(CUTURL('power_order'));/}">寄件列表</a><span>—</span><span
                         style="font-size:15px;">总计：{{orderCount}}个包裹</span>
                     <span style="float:right;">
 								<input type="text" placeholder="订单号" style="width: 100px;"
@@ -18,8 +18,8 @@
                                        style="width: 100px;">
 								<a href="javascript:;" class="btn btn-success btn-flat success new-product"
                                    @click="searchOrder">搜 索</a>
-								<a href="javascript:;" onclick="outputparts();"
-                                   class="btn btn-success btn-flat success new-product">导出Excel</a>
+                                <a v-bind:href="'//shipping.asamxpress.com/order/export-excel?order_number=' + (searchRequestObject.order_number?searchRequestObject.order_number:'')+ '&from=' + (searchRequestObject.from ? searchRequestObject.from:'')  + '&to=' + (searchRequestObject.to?searchRequestObject.to:'')"
+                                   target="_blank" class="btn btn-success btn-flat success new-product">导出Excel</a>
 							</span>
                 </div>
 
