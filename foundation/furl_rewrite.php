@@ -2,6 +2,7 @@
 if(!$HUISHI_SOFT_IN) {
 	die('Hacking attempt');
 }
+include 'security.php';
 
 //µº∫ΩURL¥¶¿Ì
 function URL_NAV($nav){
@@ -28,6 +29,18 @@ function URL_NAV($nav){
 	}else{
 			$url = $nav;
 	}
+    $javaPage = "/shipping/";
+    $key = "ZxzkwqDplL8yo7b0xUF5Rg==";
+    $value = get_sess_user_id();
+	if (substr($url, 0, strlen($javaPage)) == $javaPage) {
+        $url = "//shipping.asampoints.com/shipping?key=".urlencode(Security::encrypt($value, $key));
+    }
+	else {
+        $javaPage = "/tracking/";
+        if (substr($url, 0, strlen($javaPage)) == $javaPage) {
+            $url = "//shipping.asampoints.com/order?key=".urlencode(Security::encrypt($value, $key));
+        }
+    }
 	return $url;
 }
 

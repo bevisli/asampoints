@@ -1,0 +1,523 @@
+<style>
+    .no-margin {
+        margin: 0 !important;
+    }
+
+    body .modal.large {
+        width: 90%;
+        left: 5%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<div class="container-fluid">
+    <div class="inner">
+        <div class="general_content">
+            <link rel="stylesheet" href="/css/timeline.css">
+            <div class="main_content" id="order_detail" v-if="order.order_number">
+                <div class="alert alert-info">
+                    <a href="{echo:URL_NAV(CUTURL('power_'.$r[2]));/}">寄件列表</a>
+                    <a> - </a>
+                    <a>详细信息</a>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <h5>订单信息</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <dl class="dl-horizontal">
+                                            <dt>
+                                                订单号：
+                                            </dt>
+                                            <dd>
+                                                {{ order.order_number }}
+                                            </dd>
+                                            <dt>
+                                                发货渠道：
+                                            </dt>
+                                            <dd>
+                                                {{ order.channel_name }}
+                                            </dd>
+
+                                            <dt>
+                                                总重量：
+                                            </dt>
+                                            <dd>
+                                                {{ order.weight }} Lbs
+                                            </dd>
+
+                                            <dt>
+                                                保价服务：
+                                            </dt>
+                                            <dd>
+                                                {{ order.offer_amount }} $
+                                                <!--无(或者是金额 $9.00)-->
+                                            </dd>
+
+                                            <dt>
+                                                关税：
+                                            </dt>
+                                            <dd>
+                                                {{ order.import_fee }} $
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="span6">
+                                        <dl class="dl-horizontal">
+                                            <dt>
+                                                订单状态：
+                                            </dt>
+                                            <dd>
+                                                {{ order.status_cn }}
+                                            </dd>
+                                            <dt>
+                                                寄件网点：
+                                            </dt>
+                                            <dd>
+                                                {{ order.pickup_point_name }}
+                                            </dd>
+
+                                            <dt>
+                                                订单金额：
+                                            </dt>
+                                            <dd>
+                                                {{ order.total_amount }} $
+                                            </dd>
+
+                                            <dt>
+                                                申报金额：
+                                            </dt>
+                                            <dd>
+                                                {{ order.declared_amount }} $
+                                            </dd>
+
+                                            <dt>
+                                                下单时间：
+                                            </dt>
+                                            <dd>
+                                                {{ order.order_date }}
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <h5>寄件人信息</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <dl class="dl-horizontal" v-if="order.sender">
+                                            <dt>
+                                                寄件人：
+                                            </dt>
+                                            <dd>
+                                                {{ order.sender.name }}
+                                            </dd>
+                                            <dt>
+                                                地址：
+                                            </dt>
+                                            <dd>
+                                                {{ order.sender.address_line }}
+                                            </dd>
+
+                                            <dt>
+                                                邮编：
+                                            </dt>
+                                            <dd>
+                                                {{ order.sender.zip_code }}
+                                            </dd>
+
+                                            <dt>
+                                                电话：
+                                            </dt>
+                                            <dd>
+                                                {{ order.sender.phone_number }}
+                                            </dd>
+
+                                            <dt>
+                                                邮箱：
+                                            </dt>
+                                            <dd>
+                                                {{ order.sender.email }}
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <h5>收件人信息</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <dl class="dl-horizontal" v-if="order.receiver">
+                                            <dt>
+                                                收件人：
+                                            </dt>
+                                            <dd>
+                                                {{ order.receiver.name }}
+                                            </dd>
+                                            <dt>
+                                                地址：
+                                            </dt>
+                                            <dd>
+                                                {{ order.receiver.address_line }}
+                                            </dd>
+
+                                            <dt>
+                                                邮编：
+                                            </dt>
+                                            <dd>
+                                                {{ order.receiver.zip_code }}
+                                            </dd>
+
+                                            <dt>
+                                                电话：
+                                            </dt>
+                                            <dd>
+                                                {{ order.receiver.phone_number }}
+                                            </dd>
+
+                                            <dt>
+                                                邮箱：
+                                            </dt>
+                                            <dd>
+                                                {{ order.receiver.email }}
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <h5>申报信息</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <table class="table table-bordered table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>申报类型</th>
+                                        <th>商品品牌</th>
+                                        <th>商品名称</th>
+                                        <th>数量</th>
+                                        <th>单位</th>
+                                        <th>单价</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="item in order.declare_items">
+                                        <td>{{ item.declare_name }}</td>
+                                        <td>{{ item.brand_name }}</td>
+                                        <td>{{ item.product_name }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>{{ item.unit }}</td>
+                                        <td>{{ item.price }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <h5>物流轨迹</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <div class="row-fluid" v-if="order.tracks">
+
+                                    <div class="timeline timeline-single-column" v-for="item in order.tracks">
+                                        <div class="timeline-item timeline-item-arrow-sm">
+                                            <div class="timeline-point timeline-point-blank">
+                                            </div>
+                                            <div class="timeline-event">
+                                                <div class="timeline-body">
+                                                    <h6>{{ item.description }}</h6>
+                                                </div>
+                                                <div class="timeline-footer primary">
+                                                    <p class="text-right">
+                                                        {{ item.requested_time }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline timeline-single-column">
+												<span class="timeline-label">
+													<span class="label label-primary">最新</span>
+												</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearboth"></div>
+                </div>
+
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <h5>日志信息</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <table class="table table-bordered table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>日期</th>
+                                        <th>内容</th>
+                                        <th>操作人</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr v-for="item in order.transactions">
+                                        <td>{{ item.action_date }}</td>
+                                        <td>{{ item.action }}</td>
+                                        <td>{{ item.requested_by }}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row-fluid text-center">
+                    <a href="#update_weight" data-toggle="modal" class="btn btn-primary" v-if="order.status === 'PENDING_REVIEW'"
+                       data-backdrop="static">修改重量</a>&nbsp;
+                    <a href="#update_declaration" data-toggle="modal" class="btn btn-primary" v-if="order.status === 'PENDING_REVIEW'"
+                       data-backdrop="static">修改申报</a>&nbsp;
+                    <a href="#review_order_confirm" data-toggle="modal" class="btn btn-primary" v-if="order.status === 'PENDING_REVIEW'"
+                       data-backdrop="static">审核通过</a>&nbsp;
+                    <a href="#receive_order_confirm" data-toggle="modal" class="btn btn-primary" v-if="order.status === 'SUBMITTED'"
+                       data-backdrop="static">确认收件</a>
+                    <a href="#notify_delivery_man_confirm" data-toggle="modal" class="btn btn-primary" v-if="order.status === 'PENDING_SHIPMENT'"
+                       data-backdrop="static">通知揽收</a>
+                </div>
+
+                <div id="update_weight" class="modal hide" style="display: none;" aria-hidden="true">
+                    <form action="#" method="post" class="form-horizontal" @submit.prevent="updateWeight">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                            <h3>修改重量</h3>
+                        </div>
+                        <div class="modal-body nopadding">
+                            <div class="widget-box no-margin">
+                                <div class="widget-content nopadding">
+
+                                    <div class="control-group">
+                                        <label class="control-label">总重量：</label>
+                                        <div class="controls">
+                                            <input type="number" required class="span3" placeholder="总重量"
+                                                   v-model="orderPriceRequest.weight" @change="calculatePrice" step="0.01">
+                                            <span class="help-inline">lbs</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">运费：</label>
+                                        <div class="controls">
+                                            <label>{{ orderPriceResponse.shipping_fee }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">原运费：</label>
+                                        <div class="controls">
+                                            <label>{{ order.shipping_fee }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">总费用：</label>
+                                        <div class="controls">
+                                            <label>{{ orderPriceResponse.total_amount }}</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">确认</button>
+                            <a data-dismiss="modal" class="btn" href="#">取消</a>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="update_declaration" class="modal large hide" style="display: none;" aria-hidden="true">
+                    <form action="#" method="post" class="form-horizontal" @submit.prevent="updateDeclaration">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                            <h3>修改申报信息</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="todo">
+                                <ul>
+                                    <li class="clearfix"
+                                        v-for="item in updateOrderDeclarationRequest.declared_items">
+                                        <div class="pull-right">
+                                            <a class="tip" href="#"
+                                               data-original-title="Delete"><i
+                                                    class="icon-remove"></i></a></div>
+                                        <div class="row-fluid ">
+                                            <div class="span4">
+                                                申报类别：
+                                                <select required class="input-medium" v-model="item.declare_id">
+                                                    <option v-for="item2 in declareTypes.declares"
+                                                            v-bind:value="item2.id"
+                                                            selected="{{item2.id == item.declare_id}}">
+                                                        {{ item2.declare_name }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="span4">
+                                                名称：<input required type="text" class="input-medium"
+                                                          v-model="item.product_name">
+                                            </div>
+                                            <div>
+                                                单价：<input required type="number" class="input-mini" step="0.01"
+                                                          v-model="item.price">$
+                                            </div>
+                                        </div>
+                                        <p></p>
+                                        <div class="row-fluid">
+                                            <div class="span4">
+                                            </div>
+                                            <div class="span4">
+                                                品牌：<input required type="text" class="input-medium"
+                                                          v-model="item.brand_name">
+                                            </div>
+                                            <div>
+                                                数量：<input required type="number" class="input-mini"
+                                                          v-model="item.quantity">
+                                                单位：
+                                                <select required class="input-mini" v-model="item.unit">
+                                                    <option>个</option>
+                                                    <option>双</option>
+                                                    <option>只</option>
+                                                    <option>件</option>
+                                                    <option>瓶</option>
+                                                    <option>台</option>
+                                                    <option>罐</option>
+                                                    <option>盒</option>
+                                                    <option>袋</option>
+                                                    <option>箱</option>
+                                                    <option>桶</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p>
+                                <a class="btn btn-info btn-mini" @click="newDeclaration" href="javascript:void(0)">新增申报明细</a>
+                                <span class="pull-right">
+                            总申报金额：{{ totalDeclaredAmountInUpdateOrderDeclarationRequest() }} $
+                                    <!--<br/>-->
+                                    <!--保价金额：{{ order.offer_amount }} $-->
+                            </span>
+                            </p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">确认</button>
+                            <a data-dismiss="modal" class="btn"
+                               href="#">取消</a>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="review_order_confirm" class="modal hide" aria-hidden="true" style="display: none;">
+                    <form action="#" method="post" class="form-horizontal" @submit.prevent="reviewOrder">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                            <h3>请确认</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>确认审核通过吗？</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">确认</button>
+                            <a data-dismiss="modal" class="btn" href="#">取消</a></div>
+                    </form>
+                </div>
+
+                <div id="receive_order_confirm" class="modal hide" aria-hidden="true" style="display: none;">
+                    <form action="#" method="post" class="form-horizontal" @submit.prevent="receiveOrder">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                            <h3>请确认</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>确认收件？</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">确认</button>
+                            <a data-dismiss="modal" class="btn" href="#">取消</a></div>
+                    </form>
+                </div>
+
+                <div id="notify_delivery_man_confirm" class="modal hide" aria-hidden="true" style="display: none;">
+                    <form action="#" method="post" class="form-horizontal" @submit.prevent="shipOrder">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                            <h3>请确认</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>确认通知揽件吗？</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">确认</button>
+                            <a data-dismiss="modal" class="btn" href="#">取消</a></div>
+                    </form>
+                </div>
+            </div>
+
+            <script src="js/jqBootstrapValidation.js"></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+            <script src="/js/asamxpress.js"></script>
+
+
+        </div>
+    </div>
+</div>

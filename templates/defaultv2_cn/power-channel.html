@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="inner">
+        <div class="general_content">
+            <div class="main_content" id="product_channel">
+                <div class="alert alert-info">
+                    <a href="{echo:URL_NAV(CUTURL('power_channel'));/}">渠道列表</a>
+                    <a href="{echo:URL_NAV('power_channel-edit');/}" style="float:right;">新增渠道</a>
+                </div>
+
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>渠道名称</th>
+                        <th>快递</th>
+                        <th>首磅价格</th>
+                        <th>续磅价格</th>
+                        <th>关税税率</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {if($result[result])[exc]}
+                    {foreach($result[result] as $v)[exc]}
+                    <tr>
+                        <td>{echo:$v[channel_name];/}
+                        <td>{echo:$v[channel_name];/}</td>
+                        <td>{echo:($v[price_of_first_pound])?$v[price_of_first_pound]."$":"-";/}</td>
+                        <td>{echo:($v[price_of_next_pound])?$v[price_of_next_pound]."$":"-";/}</td>
+                        <td>{echo:($v[tax_rate])?($v[tax_rate]*100)."%":"-";/}</td>
+                        <td align="center">
+                            <a class="btn btn-small btn-primary" href="{echo:URL_NAV('power_'.$r[2].'-edit_'.$v[id]);/}">编辑</a>
+                            <a class="btn btn-small btn-danger" href="{echo:URL_NAV('power_'.$r[2].'-del_'.$v[id]);/}" onclick="return confirm('确定删除该渠道！');">删除</a>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    {else}
+                    <tr>
+                        <td colspan="9" class="center">内容为空!</td>
+                    </tr>
+                    {/if}
+                    </tbody>
+                </table>
+
+
+                <div class="clear"></div>
+
+                <div class="wp-pagenavi clearfix">
+                    <div class="pagination pagination-left" style="text-align:center;">
+                        {inc: require("module/page.php");/}
+                    </div>
+                </div><!--/ .wp-pagenavi-->
+
+                <div class="clear"></div>
+
+            </div>
+
+            <div class="clearboth"></div>
+        </div>
+    </div>
+</div>
+
