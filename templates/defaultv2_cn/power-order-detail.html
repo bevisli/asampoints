@@ -395,9 +395,9 @@
                                     <li class="clearfix"
                                         v-for="item in updateOrderDeclarationRequest.declared_items">
                                         <div class="pull-right">
-                                            <a class="tip" href="#"
+                                            <a class="tip" href="javascript:void(0)"
                                                data-original-title="Delete"><i
-                                                    class="icon-remove"></i></a></div>
+                                                    class="icon-remove" @click="updateOrderDeclarationRequest.declared_items.splice(updateOrderDeclarationRequest.declared_items.indexOf(item), 1);"></i></a></div>
                                         <div class="row-fluid ">
                                             <div class="span4">
                                                 申报类别：
