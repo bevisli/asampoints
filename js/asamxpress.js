@@ -105,6 +105,13 @@ if ($("#update_channel").length)
                         this.channel.tax_rate_formatted = tax_rate_formatted;
                 }
             },
+            "channel.tax_rate_formatted": function (newValue, oldValue) {
+                if (newValue != oldValue) {
+                    var tax_rate = newValue / 100;
+                    if (tax_rate != this.channel.tax_rate)
+                        this.channel.tax_rate = tax_rate;
+                }
+            },
         }
     });
 
@@ -225,6 +232,14 @@ if ($("#order_detail").length)
             updateDeclaration: function () {
                 var _this = this;
                 _this.updateOrderDeclarationRequest.requested_by = this.requestedBy();
+                for (var i = 0; i < this.updateOrderDeclarationRequest.declared_items.length; i++) {
+                    var item = this.updateOrderDeclarationRequest.declared_items[i];
+                    if (item && item.declare_id && !item.declare_name) {
+                        item.declare_name = $.grep(_this.declareTypes.declares, function (value, index) {
+                            return value.id == item.declare_id
+                        })[0].declare_name;
+                    }
+                }
                 this.httpClient().post('/bo/order/' + this.itemId() + "/declaration", _this.updateOrderDeclarationRequest)
                     .then(function () {
                         _this.loadOrder();
