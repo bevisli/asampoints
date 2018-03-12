@@ -191,7 +191,8 @@ if ($("#order_detail").length)
             orderPriceRequest: {},
             orderPriceResponse: {},
             updateOrderDeclarationRequest: {declared_items: []},
-            declareTypes: {}
+            declareTypes: {},
+            dataLoading: false,
         },
         methods: {
             loadOrder: function () {
@@ -285,12 +286,16 @@ if ($("#order_detail").length)
             },
             shipOrder: function () {
                 var _this = this;
+                _this.dataLoading = true;
                 this.httpClient().post('/bo/order/' + this.itemId() + "/ship", {
                     requested_by: _this.requestedBy()
                 })
                     .then(function () {
                         _this.loadOrder();
                         _this.closeModal();
+                    })
+                    .finally(function () {
+                        _this.dataLoading = false;
                     })
                 ;
             },
