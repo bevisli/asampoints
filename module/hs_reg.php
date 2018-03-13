@@ -18,7 +18,7 @@
 		$post['user_name'] = lib_replace_end_tag(short_check(get_args('u_name')));
 		$post['express_address'] = lib_replace_end_tag(short_check(get_args('u_address')));
 		$post['express_name'] = lib_replace_end_tag(short_check(get_args('u_name')));
-		$post['user_mobile']=intval(lib_replace_end_tag(short_check(get_args('u_phone'))));
+		$post['user_mobile']=lib_replace_end_tag(short_check(get_args('u_phone')));
 		$post['user_mobile_code'] = intval(get_args('u_mobilecode'));
 
 
@@ -47,6 +47,12 @@
 			die();
 		}
 
+        $checkusername=get_table_info($dbo,$t_users,'user_name',$post['user_name']);
+        if($checkusername){
+            echo "<script>parent.alert('该姓名已经在！');</script>";
+            die();
+        }
+
 		$checkusermobile=get_table_info($dbo,$t_users,'user_mobile',$post['user_mobile']);
 		if($checkusermobile){
 			echo "<script>parent.alert('该手机账户已经在！');</script>";
@@ -59,6 +65,8 @@
 			if($prev_apply_time<(time()-60)||!$prev_apply_time){
 				$post['user_passwd']=md5($password);
 				$post['last_ip'] = get_real_ip();
+                $post['sina_uid'] = "";
+                $post['qq_uid'] = "";
 				$user_id = insert_table_info($dbo,$t_users,$post);
 				set_session('prev_apply_time',time());
 				if($user_id){
